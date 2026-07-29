@@ -370,9 +370,14 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-  gap: clamp(2rem, 5vw, 3.75rem);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 280px);
+  gap: clamp(1.75rem, 4vw, 3.25rem);
   align-items: center;
+}
+
+/* Prevent grid blowout from large replaced content (images) */
+.hero-grid > * {
+  min-width: 0;
 }
 
 .eyebrow {
@@ -459,16 +464,23 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   opacity: 0.9;
 }
 
-/* Hero photo — Fatty Fries */
+/* Hero photo — Fatty Fries
+   Image is absolutely positioned so its intrinsic pixel size
+   cannot expand the grid or stack full-width under the intro. */
 .hero-photo {
   margin: 0;
   justify-self: end;
-  width: min(100%, 320px);
+  align-self: center;
+  width: 100%;
+  max-width: 280px;
 }
 
 .photo-frame {
   position: relative;
-  aspect-ratio: 1;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   border-radius: 28px;
   overflow: hidden;
   background: var(--portrait-bg);
@@ -477,16 +489,21 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 }
 
 .photo-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
   object-position: 45% 40%;
   display: block;
   transition: transform 0.7s var(--ease);
 }
 
-.hero-photo:hover .photo-img {
-  transform: scale(1.03);
+@media (prefers-reduced-motion: no-preference) {
+  .hero-photo:hover .photo-img {
+    transform: scale(1.03);
+  }
 }
 
 .photo-caption {
@@ -885,15 +902,16 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 @media (max-width: 860px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2.25rem;
+    gap: 1.75rem;
   }
 
   .hero-photo {
     justify-self: start;
-    width: min(100%, 260px);
+    max-width: 220px;
   }
 
   .photo-frame {
+    max-width: 220px;
     border-radius: 22px;
   }
 
