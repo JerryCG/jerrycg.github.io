@@ -637,10 +637,7 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   line-height: var(--font-prose-leading);
   letter-spacing: -0.006em;
   color: var(--ink-soft);
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  text-align: left;
 }
 
 .about-prose p + p {
