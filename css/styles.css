@@ -368,16 +368,18 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   padding: clamp(2.75rem, 7vw, 5.5rem) 0 clamp(3.75rem, 8vw, 6.25rem);
 }
 
+/* Flex packs photo next to intro; gap keeps photo slightly off the text */
 .hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 280px);
-  gap: clamp(1.75rem, 4vw, 3.25rem);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: clamp(1.75rem, 4vw, 3rem);
 }
 
-/* Prevent grid blowout from large replaced content (images) */
-.hero-grid > * {
+.hero-copy {
+  flex: 1 1 18rem;
   min-width: 0;
+  max-width: 36rem;
 }
 
 .eyebrow {
@@ -464,21 +466,18 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   opacity: 0.9;
 }
 
-/* Hero photo — Fatty Fries
-   Image is absolutely positioned so its intrinsic pixel size
-   cannot expand the grid or stack full-width under the intro. */
+/* Hero photo — Fatty Fries (previous size restored: 280px)
+   Absolutely positioned image so intrinsic size cannot blow layout. */
 .hero-photo {
-  margin: 0;
-  justify-self: end;
-  align-self: center;
-  width: 100%;
-  max-width: 280px;
+  margin: 0 0 0 clamp(0.5rem, 2vw, 1.25rem);
+  flex: 0 0 auto;
+  width: 280px;
+  max-width: min(280px, 100%);
 }
 
 .photo-frame {
   position: relative;
   width: 100%;
-  max-width: 280px;
   aspect-ratio: 1 / 1;
   height: auto;
   border-radius: 28px;
@@ -754,7 +753,8 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 .paper-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.25rem;
+  align-items: center;
+  gap: 0.35rem 1.15rem;
   margin-top: 0.85rem;
 }
 
@@ -769,6 +769,99 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 .text-link:hover {
   gap: 0.5rem;
+}
+
+/* Abstract drawer */
+.abstract-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 4px;
+  transition: color var(--dur) var(--ease), gap var(--dur) var(--ease);
+}
+
+.abstract-toggle:hover {
+  color: var(--accent-hover);
+  gap: 0.5rem;
+}
+
+.abstract-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.abstract-toggle-icon {
+  display: inline-block;
+  font-size: 0.75em;
+  line-height: 1;
+  transition: transform 220ms var(--ease);
+}
+
+.abstract-toggle[aria-expanded="true"] .abstract-toggle-icon {
+  transform: rotate(90deg);
+}
+
+.abstract-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
+  transition:
+    grid-template-rows 280ms var(--ease),
+    opacity 220ms var(--ease),
+    margin-top 280ms var(--ease);
+}
+
+.abstract-panel.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 0.85rem;
+}
+
+.abstract-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.abstract-body {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* Avoid tabbing into collapsed abstracts */
+.abstract-panel:not(.is-open) .abstract-body {
+  visibility: hidden;
+}
+
+.abstract-panel.is-open .abstract-body {
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abstract-panel {
+    transition: none;
+  }
+
+  .abstract-toggle-icon {
+    transition: none;
+  }
 }
 
 /* CV panel */
@@ -911,17 +1004,15 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 
   .hero-photo {
-    justify-self: start;
-    max-width: 220px;
+    width: 240px;
+    max-width: min(240px, 100%);
   }
 
   .photo-frame {
-    max-width: 220px;
     border-radius: 22px;
   }
 

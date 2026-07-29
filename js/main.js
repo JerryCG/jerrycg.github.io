@@ -143,4 +143,20 @@
   } else {
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
+
+  /* ---------- Abstract drawers ---------- */
+  document.querySelectorAll(".abstract-toggle").forEach((btn) => {
+    const panelId = btn.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel) return;
+
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      const nextOpen = !open;
+
+      btn.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+      panel.classList.toggle("is-open", nextOpen);
+      panel.setAttribute("aria-hidden", nextOpen ? "false" : "true");
+    });
+  });
 })();
