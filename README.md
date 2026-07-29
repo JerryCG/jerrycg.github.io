@@ -34,7 +34,8 @@ This repo is a **user site** (`username.github.io`).
 | Bio, education, research, contact | `index.html` |
 | Colors, spacing, type, light/dark | `css/styles.css` |
 | Scroll / nav / theme toggle | `js/main.js` |
-| CV PDF | `doc/CV_Guo_Jerry_Cheng.pdf` |
+| CV PDF | `doc/CV_Guo_Jerry_Cheng_YYYYMMDD.pdf` |
+| FATF slides | `doc/fatf_slides_YYYYMMDD.pdf` |
 
 ## Site map
 
