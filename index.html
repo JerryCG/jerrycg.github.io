@@ -1,52 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Name | Personal Website</title>
-<link rel="stylesheet" href="js/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guo (Jerry) Cheng</title>
+  <meta name="description" content="Guo (Jerry) Cheng — Predoctoral researcher in economics and computational social science. Research on international trade, quantitative methods, and empirical policy." />
+  <meta name="author" content="Guo (Jerry) Cheng" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Guo (Jerry) Cheng" />
+  <meta property="og:description" content="Predoctoral researcher in economics and computational social science." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jerrycg.github.io/" />
+
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-<header>
-<nav>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About Me</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
-</header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<section id="home">
-<h1>Hello, I'm Guo (Jerry) Cheng</h1>
-<p>Welcome to my personal website. I'm a [Your Profession] with a passion for [Your Interest].</p>
-</section>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Guo (Jerry) Cheng — home">
+        <span class="brand-mark">JC</span>
+        <span class="brand-name">Guo Cheng</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#cv">CV</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<section id="about">
-<h2>About Me</h2>
-<p>[Brief Bio Here]</p>
-</section>
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="home" aria-labelledby="hero-name">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Predoctoral Researcher</p>
+          <h1 id="hero-name">Guo (Jerry) Cheng</h1>
+          <p class="hero-role">
+            Computational Social Science · Economics
+          </p>
+          <p class="hero-lede">
+            I work on quantitative and empirical questions in international trade,
+            macro-adjacent modeling, and applied policy — with a background at
+            the University of Chicago and City University of Hong Kong.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="doc/CV_Guo_Jerry_Cheng.pdf">Download CV</a>
+            <a class="btn btn-ghost" href="#research">View research</a>
+          </div>
+          <ul class="social-list" aria-label="Contact links">
+            <li>
+              <a href="mailto:chengguo@uchicago.edu" title="Email">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                </span>
+                Email
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/guo-jerry-cheng" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.5 8.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM5 10h3v9H5v-9Zm5.5 0H14v1.3c.5-.9 1.6-1.6 3.1-1.6 2.5 0 3.9 1.6 3.9 4.5V19h-3v-4.3c0-1.4-.5-2.3-1.7-2.3-1 0-1.5.7-1.8 1.4-.1.2-.1.5-.1.8V19h-3v-9Z"/></svg>
+                </span>
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/JerryCG" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <span class="social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.32.1-2.75 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.43.2 2.49.1 2.75.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .26.18.59.69.48A10.28 10.28 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+                </span>
+                GitHub
+              </a>
+            </li>
+          </ul>
+        </div>
 
-<section id="projects">
-<h2>Projects</h2>
-<div class="project">
-<h3>Project 1</h3>
-<p>Description of the project.</p>
-<a href="https://github.com/yourusername/project1" target="_blank">GitHub Link</a>
-</div>
-<!-- Add more projects here -->
-</section>
+        <div class="hero-portrait reveal" aria-hidden="false">
+          <div class="portrait-frame">
+            <!-- Drop your photo at assets/img/profile.jpg to replace the monogram -->
+            <img
+              class="portrait-img"
+              src="assets/img/profile.jpg"
+              alt="Portrait of Guo (Jerry) Cheng"
+              width="280"
+              height="280"
+              onerror="this.classList.add('is-missing'); this.removeAttribute('src');"
+            />
+            <div class="portrait-fallback" aria-hidden="true">
+              <span>JC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section id="contact">
-<h2>Contact Me</h2>
-<p>Email: <a href="mailto:yourname@example.com">yourname@example.com</a></p>
-</section>
+    <!-- About -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section-header reveal">
+          <p class="section-label">About</p>
+          <h2 id="about-title">Background</h2>
+        </header>
 
-<footer>
-<p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
-</footer>
+        <div class="about-grid">
+          <div class="about-prose reveal">
+            <p>
+              I am a predoctoral researcher working with Hanwei Huang and collaborators
+              on international trade and quantitative macro topics, and I also assist
+              David Y. Yang at Harvard on projects related to trade and international power.
+            </p>
+            <p>
+              I hold an MA in Computational Social Science (Economics track) from the
+              University of Chicago and a First Class Honors BBA in Finance from City
+              University of Hong Kong, where I ranked first in the Finance major and
+              minored in Computer Science and Mathematics.
+            </p>
+            <p>
+              My interests sit at the intersection of empirical strategy, structural
+              modeling, and computational methods — especially questions where theory
+              and data can speak to each other clearly.
+            </p>
+          </div>
 
-<script src="scripts.js"></script>
+          <aside class="education reveal" aria-labelledby="edu-title">
+            <h3 id="edu-title" class="aside-title">Education</h3>
+            <ol class="edu-list">
+              <li>
+                <div class="edu-meta">
+                  <span class="edu-school">University of Chicago</span>
+                  <span class="edu-years">2022 – 2024</span>
+                </div>
+                <p class="edu-degree">MA, Computational Social Science — Economics</p>
+                <p class="edu-note">CGPA 3.90 · ECMA Research Scholarships 2022–24</p>
+              </li>
+              <li>
+                <div class="edu-meta">
+                  <span class="edu-school">City University of Hong Kong</span>
+                  <span class="edu-years">2018 – 2022</span>
+                </div>
+                <p class="edu-degree">BBA Finance, First Class Honors</p>
+                <p class="edu-note">Minors in CS &amp; Mathematics · Ranked 1st in Finance</p>
+              </li>
+              <li>
+                <div class="edu-meta">
+                  <span class="edu-school">Boston University</span>
+                  <span class="edu-years">Summer 2021</span>
+                </div>
+                <p class="edu-degree">Summer Exchange</p>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research -->
+    <section class="section section-alt" id="research" aria-labelledby="research-title">
+      <div class="container">
+        <header class="section-header reveal">
+          <p class="section-label">Research</p>
+          <h2 id="research-title">Selected work</h2>
+        </header>
+
+        <div class="research-block reveal">
+          <h3 class="research-group-title">Publication</h3>
+          <article class="paper-card">
+            <p class="paper-title">
+              On the Performance-based Legitimacy of Financial Action Task Force:
+              A Quantitative Exploration
+            </p>
+            <p class="paper-meta">
+              with Bo Wen ·
+              <em>Regulation &amp; Governance</em> (2025), online first
+            </p>
+            <p class="paper-note">
+              SSCI-listed in Law, Political Science, and Public Administration.
+            </p>
+            <a
+              class="text-link"
+              href="https://doi.org/10.1111/rego.70088"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View paper (DOI)
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+
+        <div class="research-block reveal">
+          <h3 class="research-group-title">Work in progress</h3>
+          <ul class="wip-list">
+            <li class="paper-card">
+              <p class="paper-title">
+                Neoclassical Growth Revisited: Why Are Policy Functions Myopic in Closed-Form?
+              </p>
+              <p class="paper-meta">with Sergio Salas</p>
+            </li>
+            <li class="paper-card">
+              <p class="paper-title">
+                Fertility Outcomes and Preferences in China: A Two-way Causal Analysis
+              </p>
+              <p class="paper-meta">Master’s thesis · supervised by Christina Brown</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section class="section" id="cv" aria-labelledby="cv-title">
+      <div class="container">
+        <div class="cv-panel reveal">
+          <div class="cv-copy">
+            <p class="section-label">Curriculum Vitae</p>
+            <h2 id="cv-title">Full CV</h2>
+            <p class="cv-lede">
+              Education, research, teaching, and references in one document.
+            </p>
+          </div>
+          <a class="btn btn-primary btn-lg" href="doc/CV_Guo_Jerry_Cheng.pdf">
+            Download PDF
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-name">Guo (Jerry) Cheng</p>
+      <ul class="footer-links">
+        <li><a href="mailto:chengguo@uchicago.edu">chengguo@uchicago.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/guo-jerry-cheng" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/JerryCG" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
+      <p class="footer-copy">© <span id="year"></span> Guo (Jerry) Cheng</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
