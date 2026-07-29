@@ -27,33 +27,22 @@ This repo is a **user site** (`username.github.io`).
 3. Source: **Deploy from a branch** → branch `main` → folder `/ (root)`.
 4. After a minute or two: [https://jerrycg.github.io](https://jerrycg.github.io)
 
-## Add your photo
-
-1. Save a square-ish headshot as:
-
-   ```
-   assets/img/profile.jpg
-   ```
-
-2. Refresh the page. The monogram placeholder is replaced automatically.
-
-Tips: ~600×600 px or larger, face centered. JPG or PNG both work (update the `src` in `index.html` if you use PNG).
-
 ## Edit content
 
 | What | Where |
 |------|--------|
-| Bio, education, research | `index.html` |
-| Colors, spacing, type | `css/styles.css` |
-| Scroll / nav behavior | `js/main.js` |
+| Bio, education, research, contact | `index.html` |
+| Colors, spacing, type, light/dark | `css/styles.css` |
+| Scroll / nav / theme toggle | `js/main.js` |
 | CV PDF | `doc/CV_Guo_Jerry_Cheng.pdf` |
 
 ## Site map
 
-- **Home** — name, role, short intro, social links  
+- **Home** — name, role, short intro, profiles  
 - **About** — bio + education  
-- **Research** — publication & work in progress  
+- **Research** — publication & work in progress (with paper links)  
 - **CV** — PDF download  
+- **Footer** — all email addresses (LinkedIn / GitHub / Scholar / ORCID appear once in the hero)  
 
 ## License
 

@@ -365,14 +365,11 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(3.5rem, 8vw, 6rem);
+  padding: clamp(2.75rem, 7vw, 5.5rem) 0 clamp(3.75rem, 8vw, 6.25rem);
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 0.85fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+.hero-stack {
+  max-width: 44rem;
 }
 
 .eyebrow {
@@ -391,37 +388,48 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.55rem);
+  font-size: clamp(2.45rem, 5.2vw, 3.65rem);
   font-weight: 500;
   letter-spacing: -0.03em;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.55rem;
 }
 
 .hero-role {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.2rem;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   font-weight: 500;
 }
 
 .hero-lede {
-  max-width: 36rem;
-  font-size: 1.08rem;
+  max-width: 38rem;
+  font-size: clamp(1.12rem, 2.2vw, 1.28rem);
+  line-height: 1.55;
   color: var(--ink-soft);
   margin-bottom: 1.75rem;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.55rem;
 }
 
 .social-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.1rem;
+  gap: 0.25rem 0.2rem;
+  padding-top: 0.15rem;
+  border-top: 1px solid var(--line);
+  max-width: 38rem;
+}
+
+.social-list li {
+  display: flex;
 }
 
 .social-list a {
@@ -430,68 +438,22 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   gap: 0.4rem;
   color: var(--muted);
   text-decoration: none;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  padding: 0.55rem 0.7rem;
+  border-radius: 999px;
+  transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
 }
 
 .social-list a:hover {
   color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .social-icon {
   display: inline-grid;
   place-items: center;
   opacity: 0.9;
-}
-
-/* Portrait */
-.hero-portrait {
-  display: flex;
-  justify-content: center;
-}
-
-.portrait-frame {
-  position: relative;
-  width: min(100%, 280px);
-  aspect-ratio: 1;
-  border-radius: 28px;
-  overflow: hidden;
-  background: var(--portrait-bg);
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--line-strong);
-}
-
-.portrait-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
-}
-
-.portrait-img.is-missing {
-  display: none;
-}
-
-.portrait-fallback {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  z-index: 1;
-  background:
-    radial-gradient(circle at 30% 25%, var(--glow-a), transparent 45%),
-    var(--portrait-bg);
-}
-
-.portrait-fallback span {
-  font-family: var(--font-serif);
-  font-size: 4.5rem;
-  font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  opacity: 0.85;
 }
 
 /* Buttons */
@@ -707,11 +669,17 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   font-size: 0.92rem;
 }
 
+.paper-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin-top: 0.85rem;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-top: 0.85rem;
   font-weight: 600;
   font-size: 0.92rem;
   text-decoration: none;
@@ -750,7 +718,7 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 /* Footer */
 .site-footer {
-  padding: 2.5rem 0 2.75rem;
+  padding: 2.75rem 0 2.9rem;
   border-top: 1px solid var(--line);
   background: var(--footer-bg);
 }
@@ -759,36 +727,89 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: 1.15rem;
+  max-width: 40rem;
 }
 
 .footer-name {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--ink);
   font-weight: 500;
 }
 
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 1.25rem;
-}
-
-.footer-links a {
+.footer-role {
+  margin: -0.55rem 0 0;
   color: var(--muted);
-  text-decoration: none;
   font-size: 0.92rem;
   font-weight: 500;
 }
 
-.footer-links a:hover {
+.footer-block {
+  width: 100%;
+}
+
+.footer-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-emails,
+.footer-ids {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-emails li,
+.footer-ids li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  font-size: 0.94rem;
+}
+
+.footer-emails a,
+.footer-ids a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-emails a:hover,
+.footer-ids a:hover {
   color: var(--accent);
+}
+
+.footer-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+}
+
+.id-key {
+  min-width: 3.6rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .footer-copy {
   margin: 0.35rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  width: 100%;
   color: var(--muted);
   font-size: 0.85rem;
 }
@@ -807,25 +828,6 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2.25rem;
-  }
-
-  .hero-portrait {
-    order: -1;
-    justify-content: flex-start;
-  }
-
-  .portrait-frame {
-    width: min(100%, 200px);
-    border-radius: 22px;
-  }
-
-  .portrait-fallback span {
-    font-size: 3.25rem;
-  }
-
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -848,6 +850,11 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
   .hero h1 {
     font-size: 2.2rem;
+  }
+
+  .social-list a {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.86rem;
   }
 
   .cv-panel {
