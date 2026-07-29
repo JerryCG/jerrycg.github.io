@@ -40,9 +40,14 @@ html[data-theme="light"] {
   --toggle-icon: #5c636b;
   --toggle-icon-active: #1e3a5f;
 
-  /* Type */
+  /* Type system
+     - sans  → UI chrome (nav, labels, buttons, meta)
+     - serif → headings + long-form reading (about, abstracts, lede)
+     Pairing: Inter + Newsreader (academic, cohesive, not identical everywhere) */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-prose-size: 1.08rem;
+  --font-prose-leading: 1.75;
 
   /* Layout */
   --container: 1080px;
@@ -109,7 +114,7 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: var(--font-sans);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.65;
   color: var(--ink-soft);
   background:
@@ -117,6 +122,7 @@ body {
     radial-gradient(900px 500px at 100% 0%, var(--glow-b), transparent 50%),
     var(--bg);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition:
     background-color var(--dur) var(--ease),
@@ -147,6 +153,7 @@ a:focus-visible {
 
 h1, h2, h3 {
   font-family: var(--font-serif);
+  font-optical-sizing: auto;
   color: var(--ink);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -237,17 +244,16 @@ ul, ol {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--brand-mark-fg);
-  font-family: var(--font-serif);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  display: block;
+  width: 2.15rem;
+  height: 2.15rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 40%;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
 }
 
 .brand-name {
@@ -373,7 +379,8 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: clamp(1.75rem, 4vw, 3rem);
+  /* Comfortable air between intro and photo — not cramped, not edge-pushed */
+  gap: clamp(2.5rem, 5.5vw, 4rem);
 }
 
 .hero-copy {
@@ -413,13 +420,14 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 .hero-lede {
   max-width: 36rem;
-  font-size: clamp(1.12rem, 2.2vw, 1.28rem);
-  line-height: 1.55;
+  font-size: clamp(1.14rem, 2.2vw, 1.3rem);
+  line-height: 1.58;
   color: var(--ink-soft);
   margin-bottom: 1.75rem;
   font-family: var(--font-serif);
   font-weight: 400;
-  letter-spacing: -0.01em;
+  font-optical-sizing: auto;
+  letter-spacing: -0.012em;
 }
 
 .hero-actions {
@@ -469,7 +477,8 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 /* Hero photo — Fatty Fries (previous size restored: 280px)
    Absolutely positioned image so intrinsic size cannot blow layout. */
 .hero-photo {
-  margin: 0 0 0 clamp(0.5rem, 2vw, 1.25rem);
+  /* Nudge right + slightly down relative to the intro block */
+  margin: clamp(0.65rem, 1.5vw, 1.1rem) 0 0 clamp(1.15rem, 3.2vw, 2.25rem);
   flex: 0 0 auto;
   width: 280px;
   max-width: min(280px, 100%);
@@ -621,18 +630,31 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 .about-prose {
   max-width: 38rem;
-  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  font-size: var(--font-prose-size);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  line-height: var(--font-prose-leading);
+  letter-spacing: -0.006em;
+  color: var(--ink-soft);
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 .about-prose p + p {
-  margin-top: 1rem;
+  margin-top: 1.05rem;
 }
 
 .about-prose > p:first-child {
   margin-top: 0;
+}
+
+/* Links inside prose stay clear without breaking the serif rhythm */
+.about-prose a {
+  font-weight: 500;
+  text-underline-offset: 0.2em;
 }
 
 .education {
@@ -735,6 +757,7 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   font-family: var(--font-serif);
   font-size: 1.18rem;
   font-weight: 500;
+  font-optical-sizing: auto;
   color: var(--ink);
   line-height: 1.35;
   letter-spacing: -0.015em;
@@ -743,8 +766,10 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 .paper-meta {
   margin: 0;
+  font-family: var(--font-sans);
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 500;
 }
 
 .paper-note {
@@ -847,13 +872,21 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 
 .abstract-body {
   margin: 0;
-  padding: 0.9rem 1rem;
+  padding: 0.95rem 1.05rem;
   border-radius: var(--radius-sm);
   background: var(--accent-soft);
   border: 1px solid var(--line);
   color: var(--ink-soft);
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: -0.005em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* Avoid tabbing into collapsed abstracts */
