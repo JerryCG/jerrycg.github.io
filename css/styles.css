@@ -622,6 +622,9 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
 .about-prose {
   max-width: 38rem;
   font-size: 1.05rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .about-prose p + p {

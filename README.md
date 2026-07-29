@@ -36,6 +36,7 @@ This repo is a **user site** (`username.github.io`).
 | Scroll / nav / theme toggle | `js/main.js` |
 | CV PDF | `doc/CV_Guo_Jerry_Cheng_YYYYMMDD.pdf` |
 | FATF slides | `doc/fatf_slides_YYYYMMDD.pdf` |
+| FATF data | `doc/FATF_4th_round_numeric_ratings_2025Jul.csv` |
 
 ## Site map
 
