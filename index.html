@@ -15,7 +15,7 @@
 
   <link rel="icon" href="assets/img/logo-red-panda.jpg" type="image/jpeg" />
   <meta name="color-scheme" content="light dark" />
-  <!-- Apply theme before paint to avoid flash -->
+  <!-- Apply theme + language before paint to avoid flash -->
   <script>
     (function () {
       try {
@@ -31,19 +31,26 @@
       } catch (e) {
         document.documentElement.setAttribute("data-theme", "light");
       }
+      try {
+        var lang = localStorage.getItem("lang");
+        if (lang === "zh-CN" || lang === "en") {
+          document.documentElement.setAttribute("lang", lang === "zh-CN" ? "zh-CN" : "en");
+          document.documentElement.setAttribute("data-lang", lang);
+        }
+      } catch (e2) { /* ignore */ }
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260414" />
+  <link rel="stylesheet" href="css/styles.css?v=20260415" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
   <header class="site-header" id="top">
     <div class="header-inner">
-      <a class="brand" href="#top" aria-label="Guo (Jerry) Cheng — home">
+      <a class="brand" href="#top" data-i18n-aria="brand.home" aria-label="Guo (Jerry) Cheng — home">
         <img
           class="brand-mark"
           src="assets/img/logo-red-panda.jpg"
@@ -52,21 +59,56 @@
           height="36"
           decoding="async"
         />
-        <span class="brand-name">Guo Cheng</span>
+        <span class="brand-name" data-i18n="brand.name">Guo Cheng</span>
       </a>
       <div class="header-right">
-        <nav class="site-nav" aria-label="Primary">
+        <nav class="site-nav" data-i18n-aria="nav.primary" aria-label="Primary">
           <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#cv">CV</a></li>
+            <li><a href="#about" data-i18n="nav.about">About</a></li>
+            <li><a href="#research" data-i18n="nav.research">Research</a></li>
+            <li><a href="#cv" data-i18n="nav.cv">CV</a></li>
           </ul>
         </nav>
+
+        <div class="lang-switch" id="lang-switch">
+          <button
+            type="button"
+            class="lang-toggle"
+            id="lang-toggle"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="lang-menu"
+            data-i18n-aria="lang.label"
+            aria-label="Language"
+            title="Language"
+          >
+            <span class="lang-toggle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18" />
+                <path d="M12 3a14 14 0 0 1 0 18" />
+                <path d="M12 3a14 14 0 0 0 0 18" />
+              </svg>
+            </span>
+            <span class="lang-current" id="lang-current">EN</span>
+            <span class="lang-caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="lang-menu" id="lang-menu" role="listbox" hidden>
+            <li role="option">
+              <button type="button" class="lang-option" data-lang="en" data-i18n="lang.en">English</button>
+            </li>
+            <li role="option">
+              <button type="button" class="lang-option" data-lang="zh-CN" data-i18n="lang.zh">简体中文</button>
+            </li>
+          </ul>
+        </div>
+
         <button
           type="button"
           class="theme-toggle"
           id="theme-toggle"
           aria-label="Switch to dark theme"
+          data-i18n-title="theme.toggle"
           title="Toggle light / dark theme"
         >
           <span class="theme-toggle-track" aria-hidden="true">
@@ -93,55 +135,55 @@
     <section class="hero" id="home" aria-labelledby="hero-name">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <h1 id="hero-name">Guo (Jerry) Cheng</h1>
-          <p class="hero-role">Incoming PhD in Polisci @UCSD</p>
-          <p class="hero-lede">
+          <h1 id="hero-name" data-i18n="hero.name">Guo (Jerry) Cheng</h1>
+          <p class="hero-role" data-i18n="hero.role">Incoming PhD in Polisci @UCSD</p>
+          <p class="hero-lede" data-i18n="hero.lede">
             An explorer in interdisciplinary research of policy-driven economics
             and political science.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#cv">Download CV</a>
-            <a class="btn btn-ghost" href="#research">View research</a>
+            <a class="btn btn-primary" href="#cv" data-i18n="hero.cv">Download CV</a>
+            <a class="btn btn-ghost" href="#research" data-i18n="hero.research">View research</a>
           </div>
-          <ul class="social-list" aria-label="Profiles and contact">
+          <ul class="social-list" data-i18n-aria="social.profiles" aria-label="Profiles and contact">
             <li>
-              <a href="mailto:chengguojerry@gmail.com" title="Email">
+              <a href="mailto:chengguojerry@gmail.com" data-i18n-title="social.email" title="Email">
                 <span class="social-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                 </span>
-                Email
+                <span data-i18n="social.email">Email</span>
               </a>
             </li>
             <li>
-              <a href="https://scholar.google.com/citations?user=vxpHL1AAAAAJ" target="_blank" rel="noopener noreferrer" title="Google Scholar">
+              <a href="https://scholar.google.com/citations?user=vxpHL1AAAAAJ" target="_blank" rel="noopener noreferrer" data-i18n-title="social.scholar" title="Google Scholar">
                 <span class="social-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 3 2 8.5 12 14l8-4.4V17h2V8.5L12 3Zm-6.2 9.1v2.7c0 1.9 2.8 3.4 6.2 3.4s6.2-1.5 6.2-3.4v-2.7L12 15.6l-6.2-3.5Z"/></svg>
                 </span>
-                Scholar
+                <span data-i18n="social.scholar">Scholar</span>
               </a>
             </li>
             <li>
-              <a href="https://orcid.org/0009-0001-1457-7017" target="_blank" rel="noopener noreferrer" title="ORCID">
+              <a href="https://orcid.org/0009-0001-1457-7017" target="_blank" rel="noopener noreferrer" data-i18n-title="social.orcid" title="ORCID">
                 <span class="social-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-3.1 4.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM8.2 9.5h1.4v7.7H8.2V9.5Zm3.25 0h3.85c2.15 0 3.55 1.35 3.55 3.35 0 2.05-1.5 3.4-3.7 3.4h-2.3v2.95h-1.4V9.5Zm1.4 1.25v3.25h2.15c1.3 0 2.15-.7 2.15-1.65 0-.95-.85-1.6-2.15-1.6H12.85Z"/></svg>
                 </span>
-                ORCID
+                <span data-i18n="social.orcid">ORCID</span>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/guo-jerry-cheng" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <a href="https://www.linkedin.com/in/guo-jerry-cheng" target="_blank" rel="noopener noreferrer" data-i18n-title="social.linkedin" title="LinkedIn">
                 <span class="social-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.5 8.5a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM5 10h3v9H5v-9Zm5.5 0H14v1.3c.5-.9 1.6-1.6 3.1-1.6 2.5 0 3.9 1.6 3.9 4.5V19h-3v-4.3c0-1.4-.5-2.3-1.7-2.3-1 0-1.5.7-1.8 1.4-.1.2-.1.5-.1.8V19h-3v-9Z"/></svg>
                 </span>
-                LinkedIn
+                <span data-i18n="social.linkedin">LinkedIn</span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/JerryCG" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <a href="https://github.com/JerryCG" target="_blank" rel="noopener noreferrer" data-i18n-title="social.github" title="GitHub">
                 <span class="social-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.32.1-2.75 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.43.2 2.49.1 2.75.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .26.18.59.69.48A10.28 10.28 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
                 </span>
-                GitHub
+                <span data-i18n="social.github">GitHub</span>
               </a>
             </li>
           </ul>
@@ -152,6 +194,7 @@
             <img
               class="photo-img"
               src="assets/img/fatty-fries.jpg"
+              data-i18n-alt="photo.alt"
               alt="Fatty Fries, a British Shorthair cat, resting on a bed"
               width="280"
               height="280"
@@ -160,8 +203,8 @@
             />
           </div>
           <figcaption class="photo-caption">
-            <span class="photo-caption-name">Fatty Fries</span>
-            <span class="photo-caption-note">British Shorthair · site co-director</span>
+            <span class="photo-caption-name" data-i18n="photo.name">Fatty Fries</span>
+            <span class="photo-caption-note" data-i18n="photo.note">British Shorthair · site co-director</span>
           </figcaption>
         </figure>
       </div>
@@ -171,23 +214,23 @@
     <section class="section" id="about" aria-labelledby="about-title">
       <div class="container">
         <header class="section-header reveal">
-          <h2 id="about-title">About</h2>
+          <h2 id="about-title" data-i18n="about.title">About</h2>
         </header>
 
         <div class="about-grid">
           <div class="about-prose reveal">
-            <p>
+            <p data-i18n="about.p1">
               I am an incoming PhD student in Political Science at UC San Diego.
               My main research interests are broad in international topics —
               including international relations, organizations and institutions,
               trade, and political economy — and my work is policy-oriented.
             </p>
-            <p>
+            <p data-i18n="about.p2">
               I approach these questions with interdisciplinary tools from
               political science and economics, aiming for research that is
               theoretically grounded and useful for understanding real-world policy.
             </p>
-            <p>
+            <p data-i18n-html="about.p3">
               Beyond research, I love furry animals — especially British and American
               Shorthairs and red pandas. I love music; here is a collection of what I enjoy:
               <a href="https://jerrycg.github.io/music-player/" target="_blank" rel="noopener noreferrer">果子狸のMusic Player</a>.
@@ -199,28 +242,28 @@
           </div>
 
           <aside class="education reveal" aria-labelledby="edu-title">
-            <h3 id="edu-title" class="aside-title">Education</h3>
+            <h3 id="edu-title" class="aside-title" data-i18n="edu.title">Education</h3>
             <ol class="edu-list">
               <li>
                 <div class="edu-meta">
-                  <span class="edu-school">UC San Diego</span>
-                  <span class="edu-years">Incoming</span>
+                  <span class="edu-school" data-i18n="edu.ucsd.school">UC San Diego</span>
+                  <span class="edu-years" data-i18n="edu.ucsd.years">Incoming</span>
                 </div>
-                <p class="edu-degree">PhD, Political Science</p>
+                <p class="edu-degree" data-i18n="edu.ucsd.degree">PhD, Political Science</p>
               </li>
               <li>
                 <div class="edu-meta">
-                  <span class="edu-school">University of Chicago</span>
+                  <span class="edu-school" data-i18n="edu.uchicago.school">University of Chicago</span>
                   <span class="edu-years">2022 – 2024</span>
                 </div>
-                <p class="edu-degree">MA, Computational Social Science (Economics)</p>
+                <p class="edu-degree" data-i18n="edu.uchicago.degree">MA, Computational Social Science (Economics)</p>
               </li>
               <li>
                 <div class="edu-meta">
-                  <span class="edu-school">City University of Hong Kong</span>
+                  <span class="edu-school" data-i18n="edu.cityu.school">City University of Hong Kong</span>
                   <span class="edu-years">2018 – 2022</span>
                 </div>
-                <p class="edu-degree">BBA, Finance · Minors in CS &amp; Mathematics</p>
+                <p class="edu-degree" data-i18n="edu.cityu.degree">BBA, Finance · Minors in CS &amp; Mathematics</p>
               </li>
             </ol>
           </aside>
@@ -232,22 +275,21 @@
     <section class="section section-alt" id="research" aria-labelledby="research-title">
       <div class="container">
         <header class="section-header reveal">
-          <p class="section-label">Research</p>
-          <h2 id="research-title">Selected work</h2>
+          <p class="section-label" data-i18n="research.label">Research</p>
+          <h2 id="research-title" data-i18n="research.title">Selected work</h2>
         </header>
 
         <div class="research-block reveal">
-          <h3 class="research-group-title">Publication</h3>
+          <h3 class="research-group-title" data-i18n="research.publication">Publication</h3>
           <article class="paper-card">
-            <p class="paper-title">
+            <p class="paper-title" data-i18n="paper.fatf.title">
               On the Performance-based Legitimacy of Financial Action Task Force:
               A Quantitative Exploration
             </p>
-            <p class="paper-meta">
-              with Bo Wen ·
-              <em>Regulation &amp; Governance</em> (2025), online first
+            <p class="paper-meta" data-i18n="paper.fatf.meta">
+              with Bo Wen · Regulation &amp; Governance (2025), online first
             </p>
-            <p class="paper-note paper-note-correction">
+            <p class="paper-note paper-note-correction" data-i18n="paper.fatf.note">
               Note: In the published text, the terms “mediation/mediate” should be read as “moderation/moderate” to denote the correct statistical concept.
             </p>
             <div class="paper-links">
@@ -257,7 +299,7 @@
                 aria-expanded="false"
                 aria-controls="abstract-fatf"
               >
-                Abstract
+                <span data-i18n="link.abstract">Abstract</span>
                 <span class="abstract-toggle-icon" aria-hidden="true">▸</span>
               </button>
               <a
@@ -266,7 +308,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Download PDF
+                <span data-i18n="link.pdf">Download PDF</span>
                 <span aria-hidden="true">→</span>
               </a>
               <a
@@ -275,7 +317,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Slides
+                <span data-i18n="link.slides">Slides</span>
                 <span aria-hidden="true">→</span>
               </a>
               <a
@@ -284,7 +326,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Data (FATF 4th-round ratings, as of Jul 2025)
+                <span data-i18n="link.data">Data (FATF 4th-round ratings, as of Jul 2025)</span>
                 <span aria-hidden="true">→</span>
               </a>
               <a
@@ -293,13 +335,13 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Publisher (DOI)
+                <span data-i18n="link.doi">Publisher (DOI)</span>
                 <span aria-hidden="true">→</span>
               </a>
             </div>
             <div class="abstract-panel" id="abstract-fatf" role="region" aria-hidden="true">
               <div class="abstract-panel-inner">
-                <p class="abstract-body">
+                <p class="abstract-body" data-i18n="paper.fatf.abstract">
                   How legitimate is Financial Action Task Force (FATF)? We address this question with cross-country evidence spanning performance-wise aspects—standards, evaluation, strategy. FATF’s legitimacy needs strengthening. Standards-wise, compliance to FATF’s Recommendations generally contributes to both FATF’s and external effectiveness proxies, yet the latter has much weaker evidence. Granularly, FATF’s Recommendations pose challenges for good-faith developing states, since capacity constraints hinder compliance and effectiveness conversion. Evaluation-wise, the effectiveness appraisal may be biased due to heavy reliance on compliance ratings, evidenced by weak correlations with external corruption control and financial transparency indicators. Strategy-wise, though enhanced follow-up boosts persistent compliance, the dominantly punitive strategy system is detrimental to good-faith yet low-capacity states. Theoretically, we build an extended framework on Mitchell’s theory by deepening the analysis of effectiveness and justifying its applicability to non-binding institutions. We also enrich the dialogue on the legitimacy of international organizations by presenting a quantitative, objective approach using official data.
                 </p>
               </div>
@@ -308,13 +350,13 @@
         </div>
 
         <div class="research-block reveal">
-          <h3 class="research-group-title">Working papers</h3>
+          <h3 class="research-group-title" data-i18n="research.working">Working papers</h3>
           <ul class="wip-list">
             <li class="paper-card">
-              <p class="paper-title">
+              <p class="paper-title" data-i18n="paper.ngm.title">
                 Neoclassical Growth Revisited: Why Are Policy Functions Myopic in Closed-Form?
               </p>
-              <p class="paper-meta">with Sergio Salas</p>
+              <p class="paper-meta" data-i18n="paper.ngm.meta">with Sergio Salas</p>
               <div class="paper-links">
                 <button
                   type="button"
@@ -322,7 +364,7 @@
                   aria-expanded="false"
                   aria-controls="abstract-ngm"
                 >
-                  Abstract
+                  <span data-i18n="link.abstract">Abstract</span>
                   <span class="abstract-toggle-icon" aria-hidden="true">▸</span>
                 </button>
                 <a
@@ -331,13 +373,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Draft PDF
+                  <span data-i18n="link.draft">Draft PDF</span>
                   <span aria-hidden="true">→</span>
                 </a>
               </div>
               <div class="abstract-panel" id="abstract-ngm" role="region" aria-hidden="true">
                 <div class="abstract-panel-inner">
-                  <p class="abstract-body">
+                  <p class="abstract-body" data-i18n="paper.ngm.abstract">
                     In learning macroeconomic dynamics, it is common to start with a version of the Neoclassical Growth Model (NGM) that admits closed-form solutions. This involves analyzing a special case with: i) log utility, ii) a Cobb–Douglas production function, and iii) full depreciation. While the existence of a closed-form solution under these assumptions has long been established, the implications for households and the role of their forward-looking behavior in deriving the results are seldom explained. This is particularly relevant in connection to the “news” literature, because unlike in a purely Markovian recursive structure, news about future changes in the economic environment—e.g., changes in productivity—generally produce current effects. However, under the special case of the NGM that admits closed-form solutions, news about future changes has no current effects. To understand why this result holds, we present the market approach to solving the problem, where it is revealed exactly what economic forces underlie the fact that agents do not react to news about future changes in wages and interest rates.
                   </p>
                 </div>
@@ -347,10 +389,10 @@
         </div>
 
         <div class="research-block reveal">
-          <h3 class="research-group-title">Work in progress</h3>
+          <h3 class="research-group-title" data-i18n="research.wip">Work in progress</h3>
           <ul class="wip-list">
             <li class="paper-card">
-              <p class="paper-title">
+              <p class="paper-title" data-i18n="paper.wip.title">
                 A Structural Model of Institutional Competition and Academic Mobility: Evidence from Elite Economics
               </p>
             </li>
@@ -358,13 +400,13 @@
         </div>
 
         <div class="research-block reveal">
-          <h3 class="research-group-title">Thesis</h3>
+          <h3 class="research-group-title" data-i18n="research.thesis">Thesis</h3>
           <ul class="wip-list">
             <li class="paper-card">
-              <p class="paper-title">
+              <p class="paper-title" data-i18n="paper.thesis.title">
                 Fertility Outcomes and Preferences in China: A Two-way Causal Analysis
               </p>
-              <p class="paper-meta">Master’s thesis · supervised by Christina Brown</p>
+              <p class="paper-meta" data-i18n="paper.thesis.meta">Master’s thesis · supervised by Christina Brown</p>
               <div class="paper-links">
                 <button
                   type="button"
@@ -372,7 +414,7 @@
                   aria-expanded="false"
                   aria-controls="abstract-thesis"
                 >
-                  Abstract
+                  <span data-i18n="link.abstract">Abstract</span>
                   <span class="abstract-toggle-icon" aria-hidden="true">▸</span>
                 </button>
                 <a
@@ -381,13 +423,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Thesis record
+                  <span data-i18n="link.thesis">Thesis record</span>
                   <span aria-hidden="true">→</span>
                 </a>
               </div>
               <div class="abstract-panel" id="abstract-thesis" role="region" aria-hidden="true">
                 <div class="abstract-panel-inner">
-                  <p class="abstract-body">
+                  <p class="abstract-body" data-i18n="paper.thesis.abstract">
                     This study explores the bidirectional causality between fertility preferences and outcomes in China, using the latest two waves of the Chinese General Social Survey (CGSS 2018 and 2021). The findings highlight significant implications for two contrasting phenomena observed in the data: 1) A progressive shift from son preference to daughter preference overall across cohorts; 2) A persistent gender discrepancy between fertility outcomes and preferences — actual fertility outcomes are more skewed towards boys than ideal fertility preferences suggest. The shift towards the daughter preference can be attributed to the “girl-updating” mechanism: having girls on average reduces the gender gap in preferences by approximately 0.5 children, while the effects of having boys are less consistent. On the other hand, the gender discrepancy between fertility outcomes and preferences can be explained by two behavioral patterns: 18% of the discrepancy comes from people with a son preference taking more aggressive measures to ensure male offspring, whereas 82% is attributed to the “implicit son preference” among people with a balance preference, who opt for a boy when limited to only one child. Moreover, a dynamic Difference-in-Differences study suggests that during the early stage of birth control policies, urban residents with a balance preference suffer from increasingly stricter constraints of having only one child than their rural counterparts, exacerbating the skewed sex ratio.
                   </p>
                 </div>
@@ -403,12 +445,12 @@
       <div class="container">
         <div class="cv-panel reveal">
           <div class="cv-copy">
-            <p class="section-label">Curriculum Vitae</p>
-            <h2 id="cv-title">Full CV</h2>
-            <p class="cv-lede">As of July 2026</p>
+            <p class="section-label" data-i18n="cv.label">Curriculum Vitae</p>
+            <h2 id="cv-title" data-i18n="cv.title">Full CV</h2>
+            <p class="cv-lede" data-i18n="cv.date">As of July 2026</p>
           </div>
           <a class="btn btn-primary btn-lg" href="doc/CV_Guo_Jerry_Cheng_20260729.pdf" target="_blank" rel="noopener noreferrer">
-            Download PDF
+            <span data-i18n="cv.download">Download PDF</span>
           </a>
         </div>
       </div>
@@ -418,15 +460,15 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <p class="footer-name">Guo (Jerry) Cheng</p>
+        <p class="footer-name" data-i18n="footer.name">Guo (Jerry) Cheng</p>
       </div>
 
       <div class="footer-block">
-        <p class="footer-label">Email</p>
+        <p class="footer-label" data-i18n="footer.email">Email</p>
         <ul class="footer-emails">
           <li>
             <a href="mailto:chengguojerry@gmail.com">chengguojerry@gmail.com</a>
-            <span class="footer-tag">main</span>
+            <span class="footer-tag" data-i18n="footer.main">main</span>
           </li>
           <li>
             <a href="mailto:g6cheng@ucsd.edu">g6cheng@ucsd.edu</a>
@@ -437,10 +479,12 @@
         </ul>
       </div>
 
-      <p class="footer-copy">© <span id="year"></span> Guo (Jerry) Cheng</p>
+      <p class="footer-copy" data-i18n="footer.copy" id="footer-copy">© <span id="year"></span> Guo (Jerry) Cheng</p>
     </div>
   </footer>
 
-  <script src="js/main.js?v=20260401"></script>
+  <!-- Offline i18n first (China-friendly, no external translation APIs), then interactions -->
+  <script src="js/i18n.js?v=20260416"></script>
+  <script src="js/main.js?v=20260415"></script>
 </body>
 </html>

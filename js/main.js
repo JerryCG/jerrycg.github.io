@@ -17,6 +17,7 @@
     })
     .filter(Boolean);
 
+  // Year may already be set by i18n.js; keep in sync if the node exists
   if (yearEl) {
     yearEl.textContent = String(new Date().getFullYear());
   }

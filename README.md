@@ -4,6 +4,10 @@ Minimal academic personal site for [jerrycg.github.io](https://jerrycg.github.io
 
 Built with plain **HTML / CSS / JS** (no build step). Content is based on the CV in `doc/`.
 
+**Languages:** English (default) and 简体中文 via offline client-side i18n (`js/i18n.js`) — no Google Translate, works in mainland China. Preference is stored in `localStorage`.
+
+**i18n maintenance:** Translations are hardcoded in `js/i18n.js`. Whenever English site copy changes, update the matching keys in both `en` and `zh-CN` packs.
+
 ## Local preview
 
 Open `index.html` in a browser, or serve the folder:
