@@ -21,6 +21,7 @@
       "footer.name": "Guo (Jerry) Cheng",
       "nav.about": "About",
       "nav.research": "Research",
+      "nav.data": "Data",
       "nav.cv": "CV",
       "nav.primary": "Primary",
       "lang.label": "Language",
@@ -88,6 +89,22 @@
       "link.doi": "Publisher (DOI)",
       "link.draft": "Draft PDF",
       "link.thesis": "Thesis record",
+      "data.meta.title": "Datasets — Guo (Jerry) Cheng",
+      "data.meta.description":
+        "Datasets curated and assembled by Guo (Jerry) Cheng — international trade, international finance, and more.",
+      "data.title": "Datasets",
+      "data.trade": "International Trade",
+      "data.finance": "International Finance",
+      "data.badge.external": "External",
+      "data.badge.assembled": "Assembled",
+      "data.open": "Open resource",
+      "data.download": "Download CSV",
+      "data.wto.title": "WTO – IMF Tariff Tracker",
+      "data.wto.desc":
+        "Interactive reports on tariff actions from the World Trade Organization and IMF.",
+      "data.fatf.title": "FATF 4th-round numeric ratings",
+      "data.fatf.desc":
+        "Numeric FATF mutual evaluation ratings from the fourth round of assessments (as of July 2025).",
       "cv.label": "Curriculum Vitae",
       "cv.title": "Full CV",
       "cv.date": "As of July 2026",
@@ -107,6 +124,7 @@
       "footer.name": "程果（杰瑞）",
       "nav.about": "关于",
       "nav.research": "研究",
+      "nav.data": "数据",
       "nav.cv": "简历",
       "nav.primary": "主导航",
       "lang.label": "语言",
@@ -171,6 +189,20 @@
       "link.doi": "出版社页面（DOI）",
       "link.draft": "论文草稿 PDF",
       "link.thesis": "论文存档",
+      "data.meta.title": "数据集 — 程果（杰瑞）",
+      "data.meta.description":
+        "程果（杰瑞）整理与收集的数据集——国际贸易、国际金融等。",
+      "data.title": "数据集",
+      "data.trade": "国际贸易",
+      "data.finance": "国际金融",
+      "data.badge.external": "外部资源",
+      "data.badge.assembled": "自行整理",
+      "data.open": "打开资源",
+      "data.download": "下载 CSV",
+      "data.wto.title": "WTO – IMF 关税追踪器",
+      "data.wto.desc": "世界贸易组织与国际货币基金组织发布的关税行动交互式报告。",
+      "data.fatf.title": "FATF 第四轮数值评分",
+      "data.fatf.desc": "金融行动特别工作组第四轮互评估的数值评分数据（截至 2025 年 7 月）。",
       "cv.label": "个人简历",
       "cv.title": "完整简历",
       "cv.date": "截至 2026 年 7 月",
@@ -243,14 +275,23 @@
       el.setAttribute("alt", t(lang, key));
     });
 
+    var isDataPage = document.body.classList.contains("page-data");
     var titleEl = document.querySelector("title");
-    if (titleEl) titleEl.textContent = t(lang, "meta.title");
+    if (titleEl) {
+      titleEl.textContent = t(lang, isDataPage ? "data.meta.title" : "meta.title");
+    }
     var desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute("content", t(lang, "meta.description"));
+    if (desc) {
+      desc.setAttribute("content", t(lang, isDataPage ? "data.meta.description" : "meta.description"));
+    }
     var ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", t(lang, "meta.description"));
+    if (ogDesc) {
+      ogDesc.setAttribute("content", t(lang, isDataPage ? "data.meta.description" : "meta.description"));
+    }
     var ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", t(lang, "meta.title"));
+    if (ogTitle) {
+      ogTitle.setAttribute("content", t(lang, isDataPage ? "data.meta.title" : "meta.title"));
+    }
 
     document.querySelectorAll(".lang-option").forEach(function (btn) {
       var code = btn.getAttribute("data-lang");

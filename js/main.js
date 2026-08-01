@@ -10,6 +10,7 @@
   const yearEl = document.getElementById("year");
   const themeToggle = document.getElementById("theme-toggle");
   const root = document.documentElement;
+  const isDataPage = document.body.classList.contains("page-data");
   const sections = navLinks
     .map((link) => {
       const id = link.getAttribute("href");
@@ -83,9 +84,9 @@
     header.classList.toggle("is-scrolled", window.scrollY > 8);
   };
 
-  /* Active nav based on scroll position */
+  /* Active nav based on scroll position (home page only) */
   const setActiveNav = () => {
-    if (!sections.length) return;
+    if (isDataPage || !sections.length) return;
 
     const marker = window.scrollY + window.innerHeight * 0.28;
     let currentId = sections[0].id;

@@ -1028,6 +1028,92 @@ html[data-theme="dark"] .theme-toggle:active .theme-toggle-thumb {
   }
 }
 
+/* Data page */
+.page-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  margin: 0;
+}
+
+.page-hero {
+  padding-top: clamp(2rem, 5vw, 3.25rem);
+}
+
+/* Data catalog */
+.data-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.data-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.data-card:hover {
+  border-color: var(--card-hover-border);
+}
+
+.data-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 0.85rem;
+  margin-bottom: 0.4rem;
+}
+
+.data-card-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+}
+
+.data-badge {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+}
+
+.data-badge-own {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: transparent;
+}
+
+.data-card-desc {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+html[data-lang="zh-CN"] .data-card-title,
+html[lang="zh-CN"] .data-card-title {
+  font-family:
+    "Songti SC",
+    "STSong",
+    "SimSun",
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    Georgia,
+    serif;
+}
+
 /* CV panel */
 .cv-panel {
   display: flex;

@@ -46,7 +46,8 @@ This repo is a **user site** (`username.github.io`).
 
 - **Home** — name, role, short intro, profiles  
 - **About** — bio + education  
-- **Research** — publication & work in progress (with paper links)  
+- **Research** — publication, working papers, WIP, thesis  
+- **Data** (`data.html`) — curated/assembled datasets by theme (separate page) 
 - **CV** — PDF download  
 - **Footer** — all email addresses (LinkedIn / GitHub / Scholar / ORCID appear once in the hero)  
 
