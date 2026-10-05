@@ -21,6 +21,7 @@
       "footer.name": "Guo (Jerry) Cheng",
       "nav.about": "About",
       "nav.research": "Research",
+      "nav.seminars": "Seminars",
       "nav.data": "Data",
       "nav.cv": "CV",
       "nav.primary": "Primary",
@@ -109,6 +110,44 @@
       "cv.title": "Full CV",
       "cv.date": "As of July 2026",
       "cv.download": "Download PDF",
+      "seminars.meta.title": "Seminars — Guo (Jerry) Cheng",
+      "seminars.meta.description":
+        "Fall 2026 seminars Guo (Jerry) Cheng is following: date, time, venue, field, speaker, and links.",
+      "seminars.label": "Seminars",
+      "seminars.title": "Seminar tracker",
+      "seminars.lede":
+        "Talks posted through October 30, 2026, from the series I follow. Each record keeps the date, time, length, venue, field, speaker, and any link the series has published.",
+      "seminars.reminder":
+        "A reminder for every listed event is emailed to chengguojerry@gmail.com the day before.",
+      "seminars.filters": "Filter seminars",
+      "seminars.filter.all": "All",
+      "seminars.filter.economics": "Economics",
+      "seminars.filter.polisci": "Political science",
+      "seminars.filter.other": "Other",
+      "seminars.search": "Search speaker, topic, or series",
+      "seminars.ics": "Download calendar",
+      "seminars.loading": "Loading seminars…",
+      "seminars.error": "The seminar list could not be loaded. Open this page from a local server or from the published site.",
+      "seminars.empty": "No upcoming talks match this filter.",
+      "seminars.count": "{n} upcoming",
+      "seminars.past": "Earlier this quarter",
+      "seminars.directory": "Series without a posted lineup",
+      "seminars.topicMissing": "Paper title not yet posted by the series",
+      "seminars.speaker": "Speaker",
+      "seminars.discussant": "Discussant",
+      "seminars.time": "Time",
+      "seminars.duration": "Length",
+      "seminars.venue": "Venue",
+      "seminars.place": "Place",
+      "seminars.format": "Format",
+      "seminars.format.in-person": "In person",
+      "seminars.format.virtual": "Virtual",
+      "seminars.format.hybrid": "Hybrid",
+      "seminars.minutes": "{n} min",
+      "seminars.week": "Week of {date}",
+      "seminars.today": "Today",
+      "seminars.abstract": "Abstract",
+      "seminars.pt": "Pacific time",
       "footer.email": "Email",
       "footer.main": "main",
       "footer.copy": "© {year} Guo (Jerry) Cheng"
@@ -124,6 +163,7 @@
       "footer.name": "程果（杰瑞）",
       "nav.about": "关于",
       "nav.research": "研究",
+      "nav.seminars": "研讨会",
       "nav.data": "数据",
       "nav.cv": "简历",
       "nav.primary": "主导航",
@@ -207,6 +247,44 @@
       "cv.title": "完整简历",
       "cv.date": "截至 2026 年 7 月",
       "cv.download": "下载 PDF",
+      "seminars.meta.title": "研讨会 — 程果（杰瑞）",
+      "seminars.meta.description":
+        "程果（杰瑞）正在关注的 2026 年秋季研讨会：日期、时间、地点、领域、讲者与链接。",
+      "seminars.label": "研讨会",
+      "seminars.title": "研讨会记录",
+      "seminars.lede":
+        "收录截至 2026 年 10 月 30 日各系列已公布的报告。每条记录包含日期、时间、时长、场地、领域、讲者，以及系列页面已给出的链接。",
+      "seminars.reminder":
+        "所列活动都会在前一天发邮件提醒至 chengguojerry@gmail.com。",
+      "seminars.filters": "筛选研讨会",
+      "seminars.filter.all": "全部",
+      "seminars.filter.economics": "经济学",
+      "seminars.filter.polisci": "政治学",
+      "seminars.filter.other": "其他",
+      "seminars.search": "搜索讲者、题目或系列",
+      "seminars.ics": "下载日历",
+      "seminars.loading": "正在加载研讨会…",
+      "seminars.error": "研讨会列表未能加载。请通过本地服务器或已发布的网站打开本页。",
+      "seminars.empty": "没有符合当前筛选的即将举行的报告。",
+      "seminars.count": "即将举行 {n} 场",
+      "seminars.past": "本季度已结束",
+      "seminars.directory": "尚未公布具体日程的系列",
+      "seminars.topicMissing": "系列尚未公布论文题目",
+      "seminars.speaker": "讲者",
+      "seminars.discussant": "评议人",
+      "seminars.time": "时间",
+      "seminars.duration": "时长",
+      "seminars.venue": "场地",
+      "seminars.place": "地点",
+      "seminars.format": "形式",
+      "seminars.format.in-person": "线下",
+      "seminars.format.virtual": "线上",
+      "seminars.format.hybrid": "线上线下结合",
+      "seminars.minutes": "{n} 分钟",
+      "seminars.week": "{date}所在周",
+      "seminars.today": "今天",
+      "seminars.abstract": "摘要",
+      "seminars.pt": "太平洋时间",
       "footer.email": "邮箱",
       "footer.main": "主要",
       "footer.copy": "© {year} 程果（杰瑞）"
@@ -275,23 +353,21 @@
       el.setAttribute("alt", t(lang, key));
     });
 
-    var isDataPage = document.body.classList.contains("page-data");
+    var pagePrefix = document.body.classList.contains("page-seminars")
+      ? "seminars.meta"
+      : document.body.classList.contains("page-data")
+        ? "data.meta"
+        : "meta";
+    var titleKey = pagePrefix === "meta" ? "meta.title" : pagePrefix + ".title";
+    var descKey = pagePrefix === "meta" ? "meta.description" : pagePrefix + ".description";
     var titleEl = document.querySelector("title");
-    if (titleEl) {
-      titleEl.textContent = t(lang, isDataPage ? "data.meta.title" : "meta.title");
-    }
+    if (titleEl) titleEl.textContent = t(lang, titleKey);
     var desc = document.querySelector('meta[name="description"]');
-    if (desc) {
-      desc.setAttribute("content", t(lang, isDataPage ? "data.meta.description" : "meta.description"));
-    }
+    if (desc) desc.setAttribute("content", t(lang, descKey));
     var ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) {
-      ogDesc.setAttribute("content", t(lang, isDataPage ? "data.meta.description" : "meta.description"));
-    }
+    if (ogDesc) ogDesc.setAttribute("content", t(lang, descKey));
     var ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) {
-      ogTitle.setAttribute("content", t(lang, isDataPage ? "data.meta.title" : "meta.title"));
-    }
+    if (ogTitle) ogTitle.setAttribute("content", t(lang, titleKey));
 
     document.querySelectorAll(".lang-option").forEach(function (btn) {
       var code = btn.getAttribute("data-lang");
@@ -309,6 +385,8 @@
     } catch (e) {
       /* ignore */
     }
+
+    document.dispatchEvent(new CustomEvent("site:lang", { detail: { lang: lang } }));
   }
 
   function initLangSwitch() {

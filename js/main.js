@@ -10,7 +10,8 @@
   const yearEl = document.getElementById("year");
   const themeToggle = document.getElementById("theme-toggle");
   const root = document.documentElement;
-  const isDataPage = document.body.classList.contains("page-data");
+  const isDataPage = document.body.classList.contains("page-data")
+    || document.body.classList.contains("page-seminars");
   const sections = navLinks
     .map((link) => {
       const id = link.getAttribute("href");

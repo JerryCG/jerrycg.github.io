@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Datasets — Guo (Jerry) Cheng</title>
-  <meta name="description" content="Datasets curated and assembled by Guo (Jerry) Cheng — international trade, international finance, and more." />
+  <title>Seminars — Guo (Jerry) Cheng</title>
+  <meta name="description" content="Fall 2026 seminars Guo (Jerry) Cheng is following: date, time, venue, field, speaker, and links." />
   <meta name="author" content="Guo (Jerry) Cheng" />
 
-  <meta property="og:title" content="Datasets — Guo (Jerry) Cheng" />
-  <meta property="og:description" content="Datasets curated and assembled by Guo (Jerry) Cheng." />
+  <meta property="og:title" content="Seminars — Guo (Jerry) Cheng" />
+  <meta property="og:description" content="Fall 2026 seminars: date, time, venue, field, speaker, and links." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://jerrycg.github.io/data.html" />
+  <meta property="og:url" content="https://jerrycg.github.io/seminars.html" />
 
   <link rel="icon" href="assets/img/logo-red-panda.jpg" type="image/jpeg" />
   <meta name="color-scheme" content="light dark" />
@@ -43,7 +43,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css?v=20261004" />
 </head>
-<body class="page-data">
+<body class="page-seminars">
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -63,8 +63,8 @@
         <ul>
           <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
           <li><a href="index.html#research" data-i18n="nav.research">Research</a></li>
-          <li><a href="seminars.html" data-i18n="nav.seminars">Seminars</a></li>
-          <li><a href="data.html" class="is-active" data-i18n="nav.data" aria-current="page">Data</a></li>
+          <li><a href="seminars.html" class="is-active" data-i18n="nav.seminars" aria-current="page">Seminars</a></li>
+          <li><a href="data.html" data-i18n="nav.data">Data</a></li>
           <li><a href="index.html#cv" data-i18n="nav.cv">CV</a></li>
         </ul>
       </nav>
@@ -131,62 +131,39 @@
   </header>
 
   <main id="main">
-    <section class="section page-hero" aria-labelledby="data-title">
+    <section class="section page-hero" aria-labelledby="seminars-title">
       <div class="container">
         <header class="section-header reveal">
-          <h1 id="data-title" class="page-title" data-i18n="data.title">Datasets</h1>
+          <p class="section-label" data-i18n="seminars.label">Seminars</p>
+          <h1 id="seminars-title" class="page-title" data-i18n="seminars.title">Seminar tracker</h1>
+          <p class="seminars-lede" data-i18n="seminars.lede">Talks posted through October 30, 2026, from the series I follow. Each record keeps the date, time, length, venue, field, speaker, and any link the series has published.</p>
+          <p class="seminars-note" data-i18n="seminars.reminder">A reminder for every listed event is emailed to chengguojerry@gmail.com the day before.</p>
         </header>
 
-        <div class="research-block reveal">
-          <h2 class="research-group-title" data-i18n="data.trade">International Trade</h2>
-          <ul class="data-list">
-            <li class="data-card">
-              <div class="data-card-top">
-                <p class="data-card-title" data-i18n="data.wto.title">WTO – IMF Tariff Tracker</p>
-                <span class="data-badge" data-i18n="data.badge.external">External</span>
-              </div>
-              <p class="data-card-desc" data-i18n="data.wto.desc">
-                Interactive reports on tariff actions from the World Trade Organization and IMF.
-              </p>
-              <div class="paper-links">
-                <a
-                  class="text-link"
-                  href="https://ttd.wto.org/en/reports/tariff-actions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span data-i18n="data.open">Open resource</span>
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </li>
-          </ul>
+        <div class="seminars-toolbar">
+          <div class="seminar-filters" role="group" data-i18n-aria="seminars.filters" aria-label="Filter seminars">
+            <button type="button" class="seminar-filter is-active" data-group="all" data-i18n="seminars.filter.all">All</button>
+            <button type="button" class="seminar-filter" data-group="economics" data-i18n="seminars.filter.economics">Economics</button>
+            <button type="button" class="seminar-filter" data-group="political-science" data-i18n="seminars.filter.polisci">Political science</button>
+            <button type="button" class="seminar-filter" data-group="other" data-i18n="seminars.filter.other">Other</button>
+          </div>
+          <input id="seminar-search" class="seminar-search" type="search" autocomplete="off" />
+          <button type="button" class="btn btn-ghost" id="seminar-ics" data-i18n="seminars.ics">Download calendar</button>
         </div>
 
-        <div class="research-block reveal">
-          <h2 class="research-group-title" data-i18n="data.finance">International Finance</h2>
-          <ul class="data-list">
-            <li class="data-card">
-              <div class="data-card-top">
-                <p class="data-card-title" data-i18n="data.fatf.title">FATF 4th-round numeric ratings</p>
-                <span class="data-badge data-badge-own" data-i18n="data.badge.assembled">Assembled</span>
-              </div>
-              <p class="data-card-desc" data-i18n="data.fatf.desc">
-                Numeric FATF mutual evaluation ratings from the fourth round of assessments (as of July 2025).
-              </p>
-              <div class="paper-links">
-                <a
-                  class="text-link"
-                  href="doc/FATF_4th_round_numeric_ratings_2025Jul.csv"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span data-i18n="data.download">Download CSV</span>
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </li>
-          </ul>
+        <p class="seminars-count" id="seminar-count" aria-live="polite"></p>
+        <div id="seminar-list">
+          <p class="seminars-note" data-i18n="seminars.loading">Loading seminars…</p>
+        </div>
+
+        <details class="seminar-past" id="seminar-past">
+          <summary data-i18n="seminars.past">Earlier this quarter</summary>
+          <div id="seminar-past-list"></div>
+        </details>
+
+        <div class="research-block" id="seminar-directory">
+          <h2 class="research-group-title" data-i18n="seminars.directory">Series without a posted lineup</h2>
+          <div class="data-list" id="seminar-directory-list"></div>
         </div>
       </div>
     </section>
@@ -219,6 +196,7 @@
   </footer>
 
   <script src="js/i18n.js?v=20261004"></script>
+  <script src="js/seminars.js?v=20261004"></script>
   <script src="js/main.js?v=20261004"></script>
 </body>
 </html>

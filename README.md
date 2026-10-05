@@ -36,6 +36,7 @@ This repo is a **user site** (`username.github.io`).
 | What | Where |
 |------|--------|
 | Bio, education, research, contact | `index.html` |
+| Seminars | `data/seminars.json` and `seminars.html` |
 | Colors, spacing, type, light/dark | `css/styles.css` |
 | Scroll / nav / theme toggle | `js/main.js` |
 | CV PDF | `doc/CV_Guo_Jerry_Cheng_YYYYMMDD.pdf` |
@@ -47,8 +48,27 @@ This repo is a **user site** (`username.github.io`).
 - **Home** — name, role, short intro, profiles  
 - **About** — bio + education  
 - **Research** — publication, working papers, WIP, thesis  
+- **Seminars** (`seminars.html`) — fall talks from the series in `seminars.txt`
 - **Data** (`data.html`) — curated/assembled datasets by theme (separate page) 
 - **CV** — PDF download  
+
+## Seminar reminders
+
+`scripts/seminar-reminders.ps1` emails `chengguojerry@gmail.com` the day before each event in `data/seminars.json` (Pacific time). GitHub Actions runs it daily (`.github/workflows/seminar-reminders.yml`).
+
+Add two repository secrets, then push to `main`:
+
+| Secret | Value |
+|--------|--------|
+| `SMTP_USER` | `chengguojerry@gmail.com` |
+| `SMTP_PASSWORD` | A Gmail [app password](https://myaccount.google.com/apppasswords) |
+
+Until those secrets exist, the workflow cannot send mail. Check the selection locally with:
+
+```powershell
+.\scripts\seminar-reminders.ps1 -DryRun -AsOf 2026-10-04
+```
+
 - **Footer** — all email addresses (LinkedIn / GitHub / Scholar / ORCID appear once in the hero)  
 
 ## License
