@@ -4,9 +4,9 @@ Minimal academic personal site for [jerrycg.github.io](https://jerrycg.github.io
 
 Built with plain **HTML / CSS / JS** (no build step). Content is based on the CV in `doc/`.
 
-**Languages:** English (default) and 简体中文 via offline client-side i18n (`js/i18n.js`) — no Google Translate, works in mainland China. Preference is stored in `localStorage`.
+**Languages:** English (default) and 简体中文. Site chrome (nav, buttons, bio) is offline in `js/i18n.js`. Seminar titles and abstracts are translated live when you switch to Chinese. Preference is stored in `localStorage`.
 
-**i18n maintenance:** Translations are hardcoded in `js/i18n.js`. Whenever English site copy changes, update the matching keys in both `en` and `zh-CN` packs.
+**i18n maintenance:** For pages other than seminar *content*, update both `en` and `zh-CN` packs in `js/i18n.js` when English copy changes. Do not add per-talk Chinese to the seminar list.
 
 ## Local preview
 
@@ -36,7 +36,7 @@ This repo is a **user site** (`username.github.io`).
 | What | Where |
 |------|--------|
 | Bio, education, research, contact | `index.html` |
-| Seminars | `data/seminars.json` and `seminars.html` |
+| Seminars | `seminars.txt` (series list), `seminars.html`, `js/seminar-live.js` |
 | Colors, spacing, type, light/dark | `css/styles.css` |
 | Scroll / nav / theme toggle | `js/main.js` |
 | CV PDF | `doc/CV_Guo_Jerry_Cheng_YYYYMMDD.pdf` |
@@ -48,26 +48,9 @@ This repo is a **user site** (`username.github.io`).
 - **Home** — name, role, short intro, profiles  
 - **About** — bio + education  
 - **Research** — publication, working papers, WIP, thesis  
-- **Seminars** (`seminars.html`) — fall talks from the series in `seminars.txt`
+- **Seminars** (`seminars.html`) — talks loaded live from the series in `seminars.txt`
 - **Data** (`data.html`) — curated/assembled datasets by theme (separate page) 
 - **CV** — PDF download  
-
-## Seminar reminders
-
-`scripts/seminar-reminders.ps1` emails `chengguojerry@gmail.com` the day before each event in `data/seminars.json` (Pacific time). GitHub Actions runs it daily (`.github/workflows/seminar-reminders.yml`).
-
-Add two repository secrets, then push to `main`:
-
-| Secret | Value |
-|--------|--------|
-| `SMTP_USER` | `chengguojerry@gmail.com` |
-| `SMTP_PASSWORD` | A Gmail [app password](https://myaccount.google.com/apppasswords) |
-
-Until those secrets exist, the workflow cannot send mail. Check the selection locally with:
-
-```powershell
-.\scripts\seminar-reminders.ps1 -DryRun -AsOf 2026-10-04
-```
 
 - **Footer** — all email addresses (LinkedIn / GitHub / Scholar / ORCID appear once in the hero)  
 

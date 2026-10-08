@@ -1668,6 +1668,9 @@ html[lang="zh-CN"] .abstract-body {
 }
 
 .seminar-when {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   border-right: 1px solid var(--line);
   padding-right: 0.35rem;
@@ -1700,8 +1703,8 @@ html[lang="zh-CN"] .abstract-body {
 }
 
 .seminar-today {
-  display: inline-block;
-  margin-top: 0.35rem;
+  display: block;
+  margin-top: 0.2rem;
 }
 
 .seminar-kicker {
@@ -1800,6 +1803,7 @@ html[lang="zh-CN"] .abstract-body {
 
   .seminar-when {
     display: flex;
+    flex-direction: row;
     align-items: baseline;
     gap: 0.45rem;
     text-align: left;

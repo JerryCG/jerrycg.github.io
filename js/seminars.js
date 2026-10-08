@@ -1,5 +1,5 @@
 /**
- * Seminar tracker. Reads data/seminars.json and renders both languages.
+ * Seminar tracker. Loads talks live and translates content when the UI is Chinese.
  */
 (function () {
   "use strict";
@@ -14,10 +14,14 @@
   var countEl = document.getElementById("seminar-count");
   var searchEl = document.getElementById("seminar-search");
   var icsBtn = document.getElementById("seminar-ics");
+  var statusEl = document.getElementById("seminar-status");
 
   var DATA = null;
   var group = "all";
   var query = "";
+  var zhCache = {};
+  var translating = false;
+  var ZH_KEY = "seminar-zh-cache-v1";
 
   var MONTHS = {
     en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -27,6 +31,15 @@
     en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     zh: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
   };
+  var SKIP_TX = {
+    TBD: 1, Zoom: 1, "N/A": 1, "UC San Diego": 1, UCSD: 1
+  };
+
+  try {
+    zhCache = JSON.parse(localStorage.getItem(ZH_KEY) || "{}");
+  } catch (e) {
+    zhCache = {};
+  }
 
   function langCode() {
     var lang = window.SiteI18n ? SiteI18n.resolve() : "en";
@@ -37,10 +50,17 @@
     return window.SiteI18n ? SiteI18n.t(key) : key;
   }
 
-  function pick(obj) {
-    if (!obj) return "";
-    var code = langCode();
-    return obj[code] || obj.en || obj.zh || "";
+  function plain(value) {
+    if (!value) return "";
+    if (typeof value === "string") return value;
+    return value.en || value.zh || value.label || "";
+  }
+
+  function tx(value) {
+    var text = plain(value);
+    if (!text) return "";
+    if (langCode() !== "zh") return text;
+    return zhCache[text] || text;
   }
 
   function esc(value) {
@@ -107,13 +127,13 @@
     return MONTHS.en[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
   }
 
-  function personHtml(person) {
-    var name = esc(person.name || "");
-    var inner = person.url
-      ? '<a href="' + esc(person.url) + '" target="_blank" rel="noopener noreferrer">' + name + "</a>"
+  function personHtml(who) {
+    var name = esc(who.name || "");
+    var inner = who.url
+      ? '<a href="' + esc(who.url) + '" target="_blank" rel="noopener noreferrer">' + name + "</a>"
       : name;
-    var aff = person.affiliation ? " · " + esc(person.affiliation) : "";
-    var note = pick(person.note);
+    var aff = who.affiliation ? " · " + esc(tx(who.affiliation)) : "";
+    var note = tx(who.note);
     var noteHtml = note ? ' <span class="seminar-person-note">' + esc(note) + "</span>" : "";
     return "<span class=\"seminar-person\">" + inner + aff + noteHtml + "</span>";
   }
@@ -125,22 +145,16 @@
     return '<p class="seminar-people"><span class="seminar-role">' + esc(label) + "</span> " + bits.join("; ") + "</p>";
   }
 
-  function both(obj) {
-    if (!obj) return "";
-    if (typeof obj === "string") return obj;
-    return (obj.en || "") + " " + (obj.zh || "");
-  }
-
   function haystack(ev) {
-    var bits = [both(ev.series), both(ev.field), both(ev.venue), both(ev.place), both(ev.note)];
+    var bits = [plain(ev.series), tx(ev.series), plain(ev.field), tx(ev.field), plain(ev.venue), plain(ev.place), plain(ev.note), tx(ev.note)];
     var talks = ev.presentations || [];
     for (var i = 0; i < talks.length; i++) {
       var talk = talks[i];
-      bits.push(both(talk.topic), both(talk.session), both(talk.abstract));
+      bits.push(plain(talk.topic), tx(talk.topic), plain(talk.session), plain(talk.abstract), tx(talk.abstract));
       var groups = [talk.speakers || [], talk.discussants || []];
       for (var g = 0; g < groups.length; g++) {
         for (var p = 0; p < groups[g].length; p++) {
-          bits.push(groups[g][p].name, groups[g][p].affiliation, both(groups[g][p].note));
+          bits.push(groups[g][p].name, groups[g][p].affiliation, tx(groups[g][p].affiliation));
         }
       }
     }
@@ -159,7 +173,7 @@
     var talks = ev.presentations || [];
     var announced = ev.topicStatus === "announced";
     var title = "";
-    if (announced && talks[0] && pick(talks[0].topic)) title = pick(talks[0].topic);
+    if (announced && talks[0] && plain(talks[0].topic)) title = tx(talks[0].topic);
     else if (talks[0] && talks[0].speakers && talks[0].speakers.length) {
       var names = [];
       for (var n = 0; n < talks[0].speakers.length; n++) names.push(talks[0].speakers[n].name);
@@ -169,8 +183,8 @@
     var blocks = "";
     for (var i = 0; i < talks.length; i++) {
       var talk = talks[i];
-      var topic = pick(talk.topic);
-      var session = pick(talk.session);
+      var topic = tx(talk.topic);
+      var session = tx(talk.session);
       var showTopic = announced && topic && (talks.length > 1 || title !== topic);
       blocks += '<div class="seminar-talk">';
       if (session) blocks += '<p class="seminar-session">' + esc(session) + "</p>";
@@ -180,13 +194,13 @@
       }
       blocks += peopleLine(tr("seminars.speaker"), talk.speakers);
       blocks += peopleLine(tr("seminars.discussant"), talk.discussants);
-      if (pick(talk.abstract)) {
+      if (plain(talk.abstract)) {
         var absId = "abs-" + ev.id + "-" + i;
         blocks += '<div class="paper-links"><button type="button" class="abstract-toggle" aria-expanded="false" aria-controls="' + absId + '">'
-          + '<span>' + esc(tr("seminars.abstract")) + '</span>'
+          + "<span>" + esc(tr("seminars.abstract")) + "</span>"
           + '<span class="abstract-toggle-icon" aria-hidden="true">▸</span></button></div>'
           + '<div class="abstract-panel" id="' + absId + '" aria-hidden="true"><div class="abstract-panel-inner">'
-          + '<p class="abstract-body">' + esc(pick(talk.abstract)) + "</p></div></div>";
+          + '<p class="abstract-body">' + esc(tx(talk.abstract)) + "</p></div></div>";
       }
       blocks += "</div>";
     }
@@ -196,7 +210,7 @@
     for (var l = 0; l < links.length; l++) {
       if (!links[l].url) continue;
       linkHtml += '<a class="text-link" href="' + esc(links[l].url) + '" target="_blank" rel="noopener noreferrer"><span>'
-        + esc(pick(links[l])) + '</span><span aria-hidden="true">→</span></a>';
+        + esc(tx(links[l].label || links[l])) + '</span><span aria-hidden="true">→</span></a>';
     }
 
     var todayMark = ev.date === today
@@ -211,17 +225,17 @@
       + todayMark
       + "</div>"
       + '<div class="seminar-body">'
-      + '<div class="seminar-kicker"><span class="data-badge">' + esc(pick(ev.field)) + "</span>"
-      + '<span class="seminar-series">' + esc(pick(ev.series)) + "</span></div>"
+      + '<div class="seminar-kicker"><span class="data-badge">' + esc(tx(ev.field)) + "</span>"
+      + '<span class="seminar-series">' + esc(tx(ev.series)) + "</span></div>"
       + '<h3 class="seminar-title">' + esc(title) + "</h3>"
       + blocks
       + '<dl class="seminar-meta">'
       + "<div><dt>" + esc(tr("seminars.time")) + "</dt><dd>" + esc(formatRange(ev)) + " · " + esc(tr("seminars.pt")) + "</dd></div>"
       + "<div><dt>" + esc(tr("seminars.duration")) + "</dt><dd>" + esc(tr("seminars.minutes").replace("{n}", String(ev.durationMin))) + "</dd></div>"
-      + "<div><dt>" + esc(tr("seminars.venue")) + "</dt><dd>" + esc(pick(ev.venue)) + "</dd></div>"
-      + "<div><dt>" + esc(tr("seminars.place")) + "</dt><dd>" + esc(pick(ev.place)) + " · " + esc(tr("seminars.format." + (ev.format || "in-person"))) + "</dd></div>"
+      + "<div><dt>" + esc(tr("seminars.venue")) + "</dt><dd>" + esc(tx(ev.venue)) + "</dd></div>"
+      + "<div><dt>" + esc(tr("seminars.place")) + "</dt><dd>" + esc(tx(ev.place)) + " · " + esc(tr("seminars.format." + (ev.format || "in-person"))) + "</dd></div>"
       + "</dl>"
-      + (pick(ev.note) ? '<p class="seminar-note">' + esc(pick(ev.note)) + "</p>" : "")
+      + (plain(ev.note) ? '<p class="seminar-note">' + esc(tx(ev.note)) + "</p>" : "")
       + (linkHtml ? '<div class="paper-links">' + linkHtml + "</div>" : "")
       + "</div></article>";
   }
@@ -271,7 +285,8 @@
     var shown = [];
     for (var i = 0; i < items.length; i++) {
       if (group !== "all" && items[i].group !== group) continue;
-      if (query && (both(items[i].name) + " " + both(items[i].detail)).toLowerCase().indexOf(query) === -1) continue;
+      var blob = (plain(items[i].name) + " " + tx(items[i].name) + " " + plain(items[i].detail) + " " + tx(items[i].detail)).toLowerCase();
+      if (query && blob.indexOf(query) === -1) continue;
       shown.push(items[i]);
     }
     if (!shown.length) {
@@ -284,10 +299,30 @@
     for (var j = 0; j < shown.length; j++) {
       var item = shown[j];
       html += '<article class="data-card"><div class="data-card-top"><p class="data-card-title">'
-        + (item.url ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + esc(pick(item.name)) + "</a>" : esc(pick(item.name)))
-        + '</p></div><p class="data-card-desc">' + esc(pick(item.detail)) + "</p></article>";
+        + (item.url ? '<a href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + esc(tx(item.name)) + "</a>" : esc(tx(item.name)))
+        + '</p></div><p class="data-card-desc">' + esc(tx(item.detail)) + "</p></article>";
     }
     dirEl.innerHTML = html;
+  }
+
+  function setStatus() {
+    if (!statusEl || !DATA) return;
+    var stamp = "";
+    try {
+      stamp = new Intl.DateTimeFormat(langCode() === "zh" ? "zh-CN" : "en", {
+        timeZone: "America/Los_Angeles",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit"
+      }).format(new Date(DATA.fetchedAt || Date.now()));
+    } catch (e) {
+      stamp = DATA.fetchedAt || "";
+    }
+    var line = tr("seminars.updated").replace("{time}", stamp);
+    if (DATA.errors && DATA.errors.length) line += " " + tr("seminars.partial");
+    if (translating) line += " " + tr("seminars.translating");
+    statusEl.textContent = line;
   }
 
   function render() {
@@ -316,11 +351,121 @@
       bindDrawers(pastEl);
     }
     renderDirectory(DATA.directory || []);
+    setStatus();
   }
 
   function byWhen(a, b) {
     if (a.date !== b.date) return a.date < b.date ? -1 : 1;
     return a.start < b.start ? -1 : a.start > b.start ? 1 : 0;
+  }
+
+  function shouldTranslate(text) {
+    if (!text) return false;
+    if (SKIP_TX[text]) return false;
+    if (text.length < 4) return false;
+    if (/^https?:/i.test(text)) return false;
+    if (/[\u3400-\u9fff]/.test(text)) return false;
+    if (!/[A-Za-z]/.test(text)) return false;
+    return true;
+  }
+
+  function collectStrings() {
+    var bag = {};
+    function add(value) {
+      var text = plain(value);
+      if (shouldTranslate(text)) bag[text] = true;
+    }
+    var events = (DATA && DATA.events) || [];
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      add(ev.series); add(ev.field); add(ev.venue); add(ev.place); add(ev.note);
+      var links = ev.links || [];
+      for (var l = 0; l < links.length; l++) add(links[l].label);
+      var talks = ev.presentations || [];
+      for (var t = 0; t < talks.length; t++) {
+        add(talks[t].topic); add(talks[t].session); add(talks[t].abstract);
+        var people = (talks[t].speakers || []).concat(talks[t].discussants || []);
+        for (var p = 0; p < people.length; p++) {
+          add(people[p].affiliation);
+          add(people[p].note);
+        }
+      }
+    }
+    var dir = (DATA && DATA.directory) || [];
+    for (var d = 0; d < dir.length; d++) {
+      add(dir[d].name);
+      add(dir[d].detail);
+    }
+    return Object.keys(bag);
+  }
+
+  function translateOne(text) {
+    var chunks = [];
+    if (text.length <= 1600) chunks = [text];
+    else {
+      var rest = text;
+      while (rest.length) {
+        if (rest.length <= 1600) {
+          chunks.push(rest);
+          break;
+        }
+        var cut = rest.lastIndexOf(". ", 1500);
+        if (cut < 400) cut = 1500;
+        else cut += 1;
+        chunks.push(rest.slice(0, cut));
+        rest = rest.slice(cut).trim();
+      }
+    }
+    var jobs = chunks.map(function (chunk) {
+      var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q=" + encodeURIComponent(chunk);
+      return fetch(url, { mode: "cors" }).then(function (res) {
+        if (!res.ok) throw new Error("tx");
+        return res.json();
+      }).then(function (data) {
+        return (data[0] || []).map(function (row) { return row[0]; }).join("");
+      });
+    });
+    return Promise.all(jobs).then(function (parts) { return parts.join(""); });
+  }
+
+  function fillTranslations() {
+    if (!DATA || langCode() !== "zh" || translating) return;
+    var need = collectStrings().filter(function (s) { return !zhCache[s]; });
+    if (!need.length) return;
+    translating = true;
+    setStatus();
+    var i = 0;
+    var running = 0;
+    var limit = 4;
+    var changed = false;
+
+    function pump() {
+      if (i >= need.length && running === 0) {
+        translating = false;
+        if (changed) {
+          try { localStorage.setItem(ZH_KEY, JSON.stringify(zhCache)); } catch (e) { /* ignore */ }
+          render();
+        } else {
+          setStatus();
+        }
+        return;
+      }
+      while (running < limit && i < need.length) {
+        (function (text) {
+          running += 1;
+          translateOne(text).then(function (zh) {
+            if (zh && zh !== text) {
+              zhCache[text] = zh;
+              changed = true;
+            }
+          }).catch(function () { /* keep English */ }).then(function () {
+            running -= 1;
+            pump();
+          });
+        })(need[i++]);
+      }
+    }
+    pump();
   }
 
   function icsEscape(value) {
@@ -366,17 +511,17 @@
       for (var t = 0; t < talks.length; t++) {
         var speakers = talks[t].speakers || [];
         for (var s = 0; s < speakers.length; s++) names.push(speakers[s].name);
-        if (talks[t].topic && talks[t].topic.en) topics.push(talks[t].topic.en);
+        if (plain(talks[t].topic)) topics.push(plain(talks[t].topic));
       }
-      var summary = (names[0] || pick(ev.series)) + " — " + (ev.series.en || "");
+      var summary = (names[0] || plain(ev.series)) + " — " + plain(ev.series);
       var description = [
-        ev.field && ev.field.en,
+        plain(ev.field),
         topics.join("; ") || "Paper title not yet posted",
         ev.start + "-" + ev.end + " Pacific",
         (ev.durationMin || "") + " min",
-        (ev.venue && ev.venue.en) || "",
-        (ev.place && ev.place.en) || "",
-        (ev.note && ev.note.en) || ""
+        plain(ev.venue),
+        plain(ev.place),
+        plain(ev.note)
       ].filter(Boolean).join("\n");
       lines.push("BEGIN:VEVENT");
       lines.push("UID:" + ev.id + "@jerrycg.github.io");
@@ -384,7 +529,7 @@
       lines.push("DTSTART;TZID=America/Los_Angeles:" + stamp);
       lines.push("DTEND;TZID=America/Los_Angeles:" + end);
       lines.push("SUMMARY:" + icsEscape(summary));
-      lines.push("LOCATION:" + icsEscape(pick(ev.venue) + ", " + pick(ev.place)));
+      lines.push("LOCATION:" + icsEscape(plain(ev.venue) + ", " + plain(ev.place)));
       lines.push("DESCRIPTION:" + icsEscape(description));
       lines.push("BEGIN:VALARM");
       lines.push("TRIGGER:-P1D");
@@ -424,18 +569,24 @@
     });
   }
   if (icsBtn) icsBtn.addEventListener("click", downloadIcs);
-  document.addEventListener("site:lang", render);
+  document.addEventListener("site:lang", function () {
+    render();
+    fillTranslations();
+  });
 
-  fetch("data/seminars.json")
-    .then(function (res) {
-      if (!res.ok) throw new Error("load");
-      return res.json();
-    })
-    .then(function (data) {
+  function boot() {
+    if (!window.SeminarLive) {
+      listEl.innerHTML = '<p class="seminars-note">' + esc(tr("seminars.error")) + "</p>";
+      return;
+    }
+    window.SeminarLive.load().then(function (data) {
       DATA = data;
       render();
-    })
-    .catch(function () {
+      fillTranslations();
+    }).catch(function () {
       listEl.innerHTML = '<p class="seminars-note">' + esc(tr("seminars.error")) + "</p>";
     });
+  }
+
+  boot();
 })();
