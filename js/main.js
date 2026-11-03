@@ -11,7 +11,8 @@
   const themeToggle = document.getElementById("theme-toggle");
   const root = document.documentElement;
   const isDataPage = document.body.classList.contains("page-data")
-    || document.body.classList.contains("page-seminars");
+    || document.body.classList.contains("page-seminars")
+    || document.body.classList.contains("page-readings");
   const sections = navLinks
     .map((link) => {
       const id = link.getAttribute("href");
@@ -109,6 +110,31 @@
     });
   };
 
+  const railLinks = Array.from(document.querySelectorAll(".reading-rail a[href^='#']"));
+  const railTargets = railLinks
+    .map((link) => {
+      const href = link.getAttribute("href");
+      const id = href ? href.slice(1) : "";
+      const el = id ? document.getElementById(id) : null;
+      return el ? { link, el } : null;
+    })
+    .filter(Boolean);
+
+  const setActiveRail = () => {
+    if (!railTargets.length) return;
+    const line = Math.max(96, window.innerHeight * 0.28);
+    let current = railTargets[0];
+    for (const item of railTargets) {
+      if (item.el.getBoundingClientRect().top <= line) current = item;
+    }
+    railLinks.forEach((link) => {
+      const on = link === current.link;
+      link.classList.toggle("is-active", on);
+      if (on) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
@@ -116,6 +142,7 @@
     requestAnimationFrame(() => {
       onScrollHeader();
       setActiveNav();
+      setActiveRail();
       ticking = false;
     });
   };
@@ -123,6 +150,7 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScrollHeader();
   setActiveNav();
+  setActiveRail();
 
   /* Reveal on enter viewport */
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

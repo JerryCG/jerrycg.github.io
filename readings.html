@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Readings — Guo (Jerry) Cheng</title>
+  <meta name="description" content="A public reading shelf kept by Guo (Jerry) Cheng. International relations, beginning with geoeconomics and geopolitics." />
+  <meta name="author" content="Guo (Jerry) Cheng" />
+
+  <meta property="og:title" content="Readings — Guo (Jerry) Cheng" />
+  <meta property="og:description" content="A public reading shelf kept by Guo (Jerry) Cheng. International relations, beginning with geoeconomics and geopolitics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jerrycg.github.io/readings.html" />
+
+  <link rel="icon" href="assets/img/logo-red-panda.jpg" type="image/jpeg" />
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = stored === "light" || stored === "dark"
+          ? stored
+          : prefersDark
+            ? "dark"
+            : "light";
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.style.colorScheme = theme;
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+      try {
+        var lang = localStorage.getItem("lang");
+        if (lang === "zh-CN" || lang === "en") {
+          document.documentElement.setAttribute("lang", lang === "zh-CN" ? "zh-CN" : "en");
+          document.documentElement.setAttribute("data-lang", lang);
+        }
+      } catch (e2) { /* ignore */ }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=20261102" />
+</head>
+<body class="page-readings">
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="index.html" data-i18n-aria="brand.home" aria-label="Guo (Jerry) Cheng — home">
+        <img
+          class="brand-mark"
+          src="assets/img/logo-red-panda.jpg"
+          alt=""
+          width="36"
+          height="36"
+          decoding="async"
+        />
+        <span class="brand-name" data-i18n="brand.name">Guo Cheng</span>
+      </a>
+      <nav class="site-nav" data-i18n-aria="nav.primary" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#about" data-i18n="nav.about">About</a></li>
+          <li><a href="index.html#research" data-i18n="nav.research">Research</a></li>
+          <li><a href="readings.html" class="is-active" data-i18n="nav.readings" aria-current="page">Readings</a></li>
+          <li><a href="seminars.html" data-i18n="nav.seminars">Seminars</a></li>
+          <li><a href="data.html" data-i18n="nav.data">Data</a></li>
+          <li><a href="index.html#cv" data-i18n="nav.cv">CV</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-tools">
+        <div class="lang-switch" id="lang-switch">
+          <button
+            type="button"
+            class="lang-toggle"
+            id="lang-toggle"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="lang-menu"
+            data-i18n-aria="lang.label"
+            aria-label="Language"
+            title="Language"
+          >
+            <span class="lang-toggle-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18" />
+                <path d="M12 3a14 14 0 0 1 0 18" />
+                <path d="M12 3a14 14 0 0 0 0 18" />
+              </svg>
+            </span>
+            <span class="lang-current" id="lang-current">EN</span>
+            <span class="lang-caret" aria-hidden="true">▾</span>
+          </button>
+          <ul class="lang-menu" id="lang-menu" role="listbox" hidden>
+            <li role="option">
+              <button type="button" class="lang-option" data-lang="en" data-i18n="lang.en">English</button>
+            </li>
+            <li role="option">
+              <button type="button" class="lang-option" data-lang="zh-CN" data-i18n="lang.zh">简体中文</button>
+            </li>
+          </ul>
+        </div>
+
+        <button
+          type="button"
+          class="theme-toggle"
+          id="theme-toggle"
+          aria-label="Switch to dark theme"
+          data-i18n-title="theme.toggle"
+          title="Toggle light / dark theme"
+        >
+          <span class="theme-toggle-track" aria-hidden="true">
+            <span class="theme-toggle-icon theme-toggle-sun">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2.5v1.8M12 19.7v1.8M2.5 12h1.8M19.7 12h1.8M5.1 5.1l1.3 1.3M17.6 17.6l1.3 1.3M5.1 18.9l1.3-1.3M17.6 6.4l1.3-1.3" />
+              </svg>
+            </span>
+            <span class="theme-toggle-icon theme-toggle-moon">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.5 14.2A8.2 8.2 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z" />
+              </svg>
+            </span>
+            <span class="theme-toggle-thumb"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section page-hero" aria-labelledby="readings-title">
+      <div class="container">
+        <header class="section-header reading-intro reveal">
+          <h1 id="readings-title" class="page-title" data-i18n="readings.title">Readings</h1>
+          <p class="reading-lede" data-i18n="readings.lede">
+            Papers I am reading, arranged for my own use and left open. Field, then topic. The notes are mine.
+          </p>
+        </header>
+
+        <div class="reading-layout">
+          <nav class="reading-rail reveal" aria-labelledby="reading-rail-label">
+            <p class="reading-rail-label" id="reading-rail-label" data-i18n="readings.rail">On this page</p>
+            <ol class="reading-rail-list">
+              <li>
+                <a href="#ir">
+                  <span class="reading-rail-index" aria-hidden="true">01</span>
+                  <span data-i18n="readings.field.ir">International Relations</span>
+                </a>
+                <ol>
+                  <li>
+                    <a href="#geoeconomics-geopolitics" data-i18n="readings.topic.geo">Geoeconomics and Geopolitics</a>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </nav>
+
+          <div class="reading-main">
+            <section class="reading-field reveal" id="ir" aria-labelledby="ir-title">
+              <div class="reading-field-head">
+                <span class="reading-index" aria-hidden="true">01</span>
+                <div>
+                  <h2 id="ir-title" data-i18n="readings.field.ir">International Relations</h2>
+                  <p class="reading-field-lede" data-i18n="readings.field.ir.lede">
+                    How states choose, and how the ties between them shape those choices.
+                  </p>
+                </div>
+              </div>
+
+              <section class="reading-topic" id="geoeconomics-geopolitics" aria-labelledby="geo-title">
+                <h3 id="geo-title" data-i18n="readings.topic.geo">Geoeconomics and Geopolitics</h3>
+                <p class="reading-topic-lede" data-i18n="readings.topic.geo.lede">
+                  Economic statecraft and strategic alignment. One topic, while a paper still treats them as the same question.
+                </p>
+
+                <article class="reading-entry" aria-labelledby="w35951-title">
+                  <div class="reading-rule">
+                    <span data-i18n="readings.w35951.date">October 2026</span>
+                    <span class="reading-rule-line" aria-hidden="true"></span>
+                    <span data-i18n="readings.w35951.venue">NBER WP 35951</span>
+                  </div>
+                  <h4 id="w35951-title" class="reading-title">A Network Approach to Geopolitics</h4>
+                  <p class="reading-gloss" data-i18n="readings.w35951.gloss"></p>
+                  <p class="reading-authors">Ernest Liu, Stephen J. Redding, Bennett Smith-Worthington, and David Y. Yang</p>
+                  <p class="reading-note" data-i18n="readings.w35951.note">
+                    The first paper on this shelf. Geopolitics is a network of alignment and costly influence, recovered from UN votes and democratic orientation, with economic integration and national security inside the same object.
+                  </p>
+                  <div class="paper-links">
+                    <button
+                      type="button"
+                      class="abstract-toggle"
+                      aria-expanded="false"
+                      aria-controls="abstract-w35951"
+                    >
+                      <span data-i18n="link.abstract">Abstract</span>
+                      <span class="abstract-toggle-icon" aria-hidden="true">▸</span>
+                    </button>
+                    <a
+                      class="text-link"
+                      href="https://www.nber.org/papers/w35951"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span data-i18n="readings.link.nber">NBER</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
+                    <a
+                      class="text-link"
+                      href="readings/pdf/w35951-liu-redding-smith-worthington-yang-2026.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span data-i18n="readings.link.pdf">Local PDF</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
+                    <a
+                      class="text-link"
+                      href="https://doi.org/10.3386/w35951"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span data-i18n="readings.link.doi">DOI</span>
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                  <div class="abstract-panel" id="abstract-w35951" role="region" aria-hidden="true">
+                    <div class="abstract-panel-inner">
+                      <p class="abstract-body" data-i18n="readings.w35951.abstract">
+                        We develop a tractable framework for analyzing geopolitics as a network of coordination and strategic influence. Countries choose geopolitical actions that trade off domestic interests against incentives to align with connected countries. They can exert costly bilateral influence to affect one another’s actions. We characterize equilibrium actions and bilateral influence in closed form. Cross-country differences in domestic interests decompose into latent geopolitical cleavages, each of which the network transmits into geopolitical actions independently of the others. The cross-country covariance matrices of domestic interests and of geopolitical actions identify the cleavages and their importance, from which we recover the network. We implement the framework using data on United Nations voting and democratic orientation. The inferred network is well approximated by a few dimensions, aligns with external measures of geopolitical ties, and recovers well-known historical cleavages. We undertake counterfactuals for domestic interests and network connections and quantify three notions of geopolitical power.
+                      </p>
+                      <p class="reading-credit" data-i18n="readings.w35951.abstractCredit">
+                        Quoted from the authors’ abstract. © 2026 by Ernest Liu, Stephen J. Redding, Bennett Smith-Worthington, and David Y. Yang.
+                      </p>
+                    </div>
+                  </div>
+                  <ul class="reading-jel">
+                    <li class="reading-jel-name">JEL</li>
+                    <li>C72</li>
+                    <li>D85</li>
+                    <li>F15</li>
+                    <li>F52</li>
+                    <li>F68</li>
+                  </ul>
+                  <p class="reading-copy" data-i18n="readings.w35951.copy">
+                    Local copy of the free October 2026 NBER working paper. The NBER page is the version of record.
+                  </p>
+                </article>
+              </section>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <p class="footer-name" data-i18n="footer.name">Guo (Jerry) Cheng</p>
+      </div>
+
+      <div class="footer-block">
+        <p class="footer-label" data-i18n="footer.email">Email</p>
+        <ul class="footer-emails">
+          <li>
+            <a href="mailto:chengguojerry@gmail.com">chengguojerry@gmail.com</a>
+            <span class="footer-tag" data-i18n="footer.main">main</span>
+          </li>
+          <li>
+            <a href="mailto:g6cheng@ucsd.edu">g6cheng@ucsd.edu</a>
+          </li>
+          <li>
+            <a href="mailto:chengguo@uchicago.edu">chengguo@uchicago.edu</a>
+          </li>
+        </ul>
+      </div>
+
+      <p class="footer-copy" data-i18n="footer.copy" id="footer-copy">© <span id="year"></span> Guo (Jerry) Cheng</p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20261102"></script>
+  <script src="js/main.js?v=20261102"></script>
+</body>
+</html>

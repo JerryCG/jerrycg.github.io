@@ -37,6 +37,7 @@ This repo is a **user site** (`username.github.io`).
 |------|--------|
 | Bio, education, research, contact | `index.html` |
 | Seminars | `seminars.txt` (series list), `seminars.html`, `js/seminar-live.js` |
+| Readings | `readings.html`, PDFs in `readings/pdf/` |
 | Colors, spacing, type, light/dark | `css/styles.css` |
 | Scroll / nav / theme toggle | `js/main.js` |
 | CV PDF | `doc/CV_Guo_Jerry_Cheng_YYYYMMDD.pdf` |
@@ -48,6 +49,7 @@ This repo is a **user site** (`username.github.io`).
 - **Home** — name, role, short intro, profiles  
 - **About** — bio + education  
 - **Research** — publication, working papers, WIP, thesis  
+- **Readings** (`readings.html`) — public shelf, field then topic. First shelf: International Relations → Geoeconomics and Geopolitics  
 - **Seminars** (`seminars.html`) — talks loaded live from the series in `seminars.txt`
 - **Data** (`data.html`) — curated/assembled datasets by theme (separate page) 
 - **CV** — PDF download  
