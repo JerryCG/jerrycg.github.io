@@ -155,28 +155,12 @@
         "A public reading shelf kept by Guo (Jerry) Cheng. International relations, beginning with geoeconomics and geopolitics.",
       "readings.title": "Readings",
       "readings.lede":
-        "Papers I am reading, arranged for my own use and left open. Field, then topic. The notes are mine.",
+        "Papers I am reading, arranged for my own use and left open. Field, then topic.",
       "readings.rail": "On this page",
       "readings.field.ir": "International Relations",
-      "readings.field.ir.lede":
-        "How states choose, and how the ties between them shape those choices.",
       "readings.topic.geo": "Geoeconomics and Geopolitics",
-      "readings.topic.geo.lede":
-        "Economic statecraft and strategic alignment. One topic, while a paper still treats them as the same question.",
-      "readings.w35951.gloss": "",
-      "readings.w35951.date": "October 2026",
-      "readings.w35951.venue": "NBER WP 35951",
-      "readings.w35951.note":
-        "The first paper on this shelf. Geopolitics is a network of alignment and costly influence, recovered from UN votes and democratic orientation, with economic integration and national security inside the same object.",
-      "readings.w35951.abstract":
-        "We develop a tractable framework for analyzing geopolitics as a network of coordination and strategic influence. Countries choose geopolitical actions that trade off domestic interests against incentives to align with connected countries. They can exert costly bilateral influence to affect one another’s actions. We characterize equilibrium actions and bilateral influence in closed form. Cross-country differences in domestic interests decompose into latent geopolitical cleavages, each of which the network transmits into geopolitical actions independently of the others. The cross-country covariance matrices of domestic interests and of geopolitical actions identify the cleavages and their importance, from which we recover the network. We implement the framework using data on United Nations voting and democratic orientation. The inferred network is well approximated by a few dimensions, aligns with external measures of geopolitical ties, and recovers well-known historical cleavages. We undertake counterfactuals for domestic interests and network connections and quantify three notions of geopolitical power.",
-      "readings.w35951.abstractCredit":
-        "Quoted from the authors’ abstract. © 2026 by Ernest Liu, Stephen J. Redding, Bennett Smith-Worthington, and David Y. Yang.",
-      "readings.w35951.copy":
-        "Local copy of the free October 2026 NBER working paper. The NBER page is the version of record.",
-      "readings.link.nber": "NBER",
-      "readings.link.pdf": "Local PDF",
-      "readings.link.doi": "DOI",
+      "readings.link.original": "Original",
+      "readings.link.pdf": "PDF",
       "footer.email": "Email",
       "footer.main": "main",
       "footer.copy": "© {year} Guo (Jerry) Cheng"
@@ -321,27 +305,12 @@
         "程果（杰瑞）的公开阅读架。国际关系，从地缘经济与地缘政治开始。",
       "readings.title": "阅读",
       "readings.lede":
-        "我在读的论文，按自己的用法排好，也公开着。先是领域，再是议题。批注是我写的。",
+        "我在读的论文，按自己的用法排好，也公开着。先是领域，再是议题。",
       "readings.rail": "本页",
       "readings.field.ir": "国际关系",
-      "readings.field.ir.lede": "国家如何做选择，以及国家之间的联系如何塑造这些选择。",
       "readings.topic.geo": "地缘经济与地缘政治",
-      "readings.topic.geo.lede":
-        "经济治国术与战略对齐。当一篇论文仍把二者写成同一个问题时，先放在同一格。",
-      "readings.w35951.gloss": "地缘政治的网络方法",
-      "readings.w35951.date": "2026 年 10 月",
-      "readings.w35951.venue": "NBER 工作论文 35951",
-      "readings.w35951.note":
-        "这一格的第一篇。地缘政治在这里是对齐与有成本的影响所构成的网络，由联合国投票和民主取向收回；经济一体化与国家安全处在同一个对象之中。",
-      "readings.w35951.abstract":
-        "我们构建一个可处理的框架，把地缘政治理解为协调与战略影响的网络。各国在选择地缘政治行动时，要在国内利益与同相连国家保持一致的激励之间权衡。它们可以付出成本，对彼此施加双边影响。我们给出均衡行动与双边影响的闭式解。各国国内利益的差异可以分解为若干潜在的地缘政治裂痕；网络把每一条裂痕分别传导为地缘政治行动，彼此独立。国内利益与地缘政治行动的跨国协方差矩阵可以识别这些裂痕及其重要性，并由此收回网络本身。我们用联合国投票与民主取向的数据实施这一框架。推断得到的网络可由少数维度很好地近似，与地缘政治联系的外部度量相符，并能找回众所周知的历史裂痕。我们对国内利益和网络连接做反事实分析，并量化三种地缘政治权力。",
-      "readings.w35951.abstractCredit":
-        "中文为本书架的译文，不是作者原文。© 2026 by Ernest Liu, Stephen J. Redding, Bennett Smith-Worthington, and David Y. Yang.",
-      "readings.w35951.copy":
-        "本地副本取自 2026 年 10 月的 NBER 免费工作论文。以 NBER 页面为准确版本。",
-      "readings.link.nber": "NBER",
-      "readings.link.pdf": "本地 PDF",
-      "readings.link.doi": "DOI",
+      "readings.link.original": "原文",
+      "readings.link.pdf": "PDF",
       "footer.email": "邮箱",
       "footer.main": "主要",
       "footer.copy": "© {year} 程果（杰瑞）"
