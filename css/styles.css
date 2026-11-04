@@ -1427,7 +1427,6 @@ html[lang="zh-CN"] .data-card-title {
   }
 
   .paper-title,
-  .reading-title,
   .data-card-title {
     font-size: 1.05rem;
     overflow-wrap: anywhere;
@@ -1905,8 +1904,13 @@ html[lang="zh-CN"] .abstract-body {
 }
 
 .reading-entry {
-  padding: 0.7rem 0;
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  padding: 0.42rem 0;
   border-bottom: 1px solid var(--line);
+  overflow-wrap: break-word;
 }
 
 .reading-list .reading-entry:first-child {
@@ -1918,40 +1922,28 @@ html[lang="zh-CN"] .abstract-body {
   padding-bottom: 0;
 }
 
+.reading-cite {
+  color: var(--muted);
+}
+
 .reading-title {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-style: normal;
   font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: -0.015em;
   color: var(--ink);
 }
 
-.reading-authors {
-  margin: 0.18rem 0 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-  line-height: 1.45;
-}
-
-.reading-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.15rem 0.95rem;
-  margin: 0.38rem 0 0;
-}
-
-.reading-links a {
-  font-size: 0.82rem;
+.reading-entry a {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
+  margin-left: 0.7em;
 }
 
-html[data-lang="zh-CN"] .reading-title,
-html[lang="zh-CN"] .reading-title {
+html[data-lang="zh-CN"] .reading-entry,
+html[lang="zh-CN"] .reading-entry {
   font-family: var(--font-serif);
-  letter-spacing: -0.015em;
 }
 
 @media (min-width: 900px) {
