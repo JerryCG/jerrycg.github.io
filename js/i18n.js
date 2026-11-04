@@ -154,9 +154,7 @@
       "readings.meta.description":
         "A public reading shelf kept by Guo (Jerry) Cheng. International relations, beginning with geoeconomics and geopolitics.",
       "readings.title": "Readings",
-      "readings.lede":
-        "Papers I am reading, arranged for my own use and left open. Field, then topic.",
-      "readings.rail": "On this page",
+      "readings.rail": "Sections",
       "readings.field.ir": "International Relations",
       "readings.topic.geo": "Geoeconomics and Geopolitics",
       "readings.link.original": "Original",
@@ -304,9 +302,7 @@
       "readings.meta.description":
         "程果（杰瑞）的公开阅读架。国际关系，从地缘经济与地缘政治开始。",
       "readings.title": "阅读",
-      "readings.lede":
-        "我在读的论文，按自己的用法排好，也公开着。先是领域，再是议题。",
-      "readings.rail": "本页",
+      "readings.rail": "目录",
       "readings.field.ir": "国际关系",
       "readings.topic.geo": "地缘经济与地缘政治",
       "readings.link.original": "原文",

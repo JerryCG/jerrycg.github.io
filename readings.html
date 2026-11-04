@@ -41,7 +41,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20261103" />
+  <link rel="stylesheet" href="css/styles.css?v=20261103a" />
 </head>
 <body class="page-readings">
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -134,16 +134,12 @@
   <main id="main">
     <section class="section page-hero" aria-labelledby="readings-title">
       <div class="container">
-        <header class="section-header reading-intro reveal">
+        <header class="reading-intro reveal">
           <h1 id="readings-title" class="page-title" data-i18n="readings.title">Readings</h1>
-          <p class="reading-lede" data-i18n="readings.lede">
-            Papers I am reading, arranged for my own use and left open. Field, then topic.
-          </p>
         </header>
 
         <div class="reading-layout">
-          <nav class="reading-rail reveal" aria-labelledby="reading-rail-label">
-            <p class="reading-rail-label" id="reading-rail-label" data-i18n="readings.rail">On this page</p>
+          <nav class="reading-rail reveal" data-i18n-aria="readings.rail" aria-label="Sections">
             <ol class="reading-rail-list">
               <li>
                 <a href="#ir">
@@ -161,13 +157,9 @@
 
           <div class="reading-main">
             <section class="reading-field reveal" id="ir" aria-labelledby="ir-title">
-              <div class="reading-field-head">
-                <span class="reading-index" aria-hidden="true">01</span>
-                <h2 id="ir-title" data-i18n="readings.field.ir">International Relations</h2>
-              </div>
-
+              <h2 id="ir-title" class="visually-hidden" data-i18n="readings.field.ir">International Relations</h2>
               <section class="reading-topic" id="geoeconomics-geopolitics" aria-labelledby="geo-title">
-                <h3 id="geo-title" data-i18n="readings.topic.geo">Geoeconomics and Geopolitics</h3>
+                <h3 id="geo-title" class="visually-hidden" data-i18n="readings.topic.geo">Geoeconomics and Geopolitics</h3>
                 <ul class="reading-list">
                   <li class="reading-entry">
                     <p class="reading-title">A Network Approach to Geopolitics</p>
@@ -212,7 +204,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js?v=20261103"></script>
-  <script src="js/main.js?v=20261103"></script>
+  <script src="js/i18n.js?v=20261103a"></script>
+  <script src="js/main.js?v=20261103a"></script>
 </body>
 </html>
